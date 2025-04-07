@@ -1,5 +1,9 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
@@ -62,7 +66,7 @@ nav a:hover {
 }
 
 .titulo-principal {
-    font-size: 50px;
+    font-size: 70px;
     margin: 0;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     transition: all 0.3s ease;
@@ -108,11 +112,17 @@ h2 {
 
 .nosotros h2 {
     font-size: 24px;
-    margin-bottom: 10px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    background-color: #ffffff71;
+    border-radius: 5px;
+    padding: 10px;
+    display: block; 
+    margin-bottom: 50px;
     color: #ff6600;
     text-align: center;
-    margin-bottom: 30px;
+    margin-left: auto; 
+    margin-right: auto; 
+    width: fit-content; 
 }
 
 .redes {
@@ -252,8 +262,9 @@ h2 {
 .contacto button {
     padding: 10px 20px;
     background-color: #ff6600;
-    border: none;
     color: white;
+    border: none;
+    border-radius: 10px;
     font-size: 18px;
     cursor: pointer;
 }
