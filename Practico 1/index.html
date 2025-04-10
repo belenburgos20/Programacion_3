@@ -3,16 +3,12 @@
     </head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="CSS/estilos.css">
         <title>TechNova Solution</title>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="CSS/estilos.css">
     </head>
     <body>
-        <div class="video">
-            <video autoplay muted loop>
-                <source src="Imagenes/fondo.mp4" type="video/mp4">
-                Su navegador no soporta la etiqueta de video.            
-            </video>
-        </div>
+        <div class="imagen-fondo"></div>
         <div class="overlay"></div>        
         <header>
             <nav class="nav">
@@ -23,19 +19,23 @@
                     <li><a href="#contacto">Contacto</a></li>
                 </ul>
             </nav>
-            <h1 class="titulo">Bienvenido a <span class="resaltar">TechNova Solution</span></h1>
-            <h2 class="subtitulo">Innovación y Tecnología</h2>
-        </header>
-        <section class="nosotros">
-            <div class="container">
-                <h2>Sobre Nosotros</h2>
-                <p>En TechNova Solution, nos dedicamos a ofrecer soluciones tecnológicas innovadoras para ayudar a las empresas a crecer y prosperar en la era digital. Nuestro equipo de expertos está comprometido con la excelencia y la satisfacción del cliente.</p>
-                <p>Ofrecemos una amplia gama de servicios, desde desarrollo web y móvil hasta soluciones en la nube y marketing digital. Nuestro objetivo es transformar tu visión en realidad.</p>
-                <p>Contáctanos hoy mismo para saber cómo podemos ayudarte a alcanzar tus objetivos.</p>
+            <div class="titulos">
+                <h1>TechNova Solution</h1>
+                <h2 class="subtitulo">Innovación y Tecnología</h2>                
             </div>
-        </section>
-        <section class="servicios" id="servicios">
-            <div class="contenedor">
+
+        </header>
+        <div class="contenedor">
+          <section class="nosotros">
+            <div>
+                <h2>Sobre Nosotros</h2>
+            </div>
+            <div class="sobre-nosotros">
+                <p>Nos dedicamos a ofrecer soluciones tecnológicas innovadoras para ayudar a las empresas a crecer y prosperar en la era digital. </p>
+                <p>Nuestro equipo de expertos está comprometido con la excelencia y la satisfacción del cliente.</p>
+            </div>
+           </section>
+          <section class="servicios" id="servicios">
                 <h2>Nuestros Servicios</h2>
                 <div class="rejilla">
                     <div class="servicio">
@@ -69,19 +69,38 @@
                         <p>Asesoramiento en tecnología y transformación digital.</p>
                     </div>
                 </div>
-            </div>
-        </section>
-        <section class="contacto" id="contacto">
-            <div class="container">
+            </section>
+            <section class="contacto" id="contacto">
                 <h2>Contacto</h2>
-                <form action="#" method="post">
-                    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                <div class="container">               
+                 <form action="#" method="post">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+
+                    <label for="email">Email:</label>
                     <input type="email" id="email" name="email" placeholder="ejemplo@email.com" required>
-                    <textarea id="mensaje" name="mensaje" placeholder="Tu mensaje" required></textarea>
+
+                    <label for="telefono">Teléfono:</label>
+                    <input type="tel" id="telefono" name="telefono" >
+
+                    <label for="opciones">¿Qué servicio te interesa?</label>
+                    <select id="opciones" name="opciones">
+                        <option value="web">Desarrollo Web</option>
+                        <option value="app">Aplicaciones Móviles</option>
+                        <option value="cloud">Soluciones en la Nube</option>
+                        <option value="seguridad">Seguridad Informática</option>
+                        <option value="marketing">Marketing Digital</option>
+                        <option value="consultoria">Consultoria IT</option>
+                    </select>
+
+                    <label for="mensaje">Mensaje:   (Opcional)</label>
+                    <textarea id="mensaje" name="mensaje" required></textarea>
                     <button type="submit">Enviar</button>
-                </form>
-            </div>
-        </section>
+                 </form>
+                </div>
+            </section>  
+        </div>
+        
         <footer class="footer">
             <p>&copy; 2025 TechNova Solution. Derechos reservados  </p>
             <ul class="redes">
