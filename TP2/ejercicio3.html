@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 3</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: violet;
+        font-family: "Courier New", Courier, monospace;
+      }
+
+      h1 {
+        font-size: 20px;
+        text-decoration: underline;
+        font-weight: bold;
+        margin: 0 0 5 0 px;
+      }
+
+      p {
+        margin: 0px;
+        padding: 0px;
+      }
+
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border-radius: 5px;
+        padding: 5px;
+        background-color: aqua;
+      }
+
+      button:hover {
+        background-color: aquamarine;
+      }
+
+      .resaltado {
+        background-color: yellow;
+        font-weight: bold;
+      }
+
+      .oculto {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Ejercicio 3</h1>
+    <p id="resaltado">Se resaltará este párrafo</p>
+    <br />
+    <p id="oculto">Se ocultara este párrafo</p>
+    <br />
+    <button>RESALTAR</button>
+    <br />
+    <button>OCULTAR</button>
+  </body>
+  <script>
+    let resaltado = document.getElementById("resaltado");
+    let oculto = document.getElementById("oculto");
+    let botonResaltar = document.querySelector("button");
+    let botonOcultar = document.querySelector("button:nth-of-type(2)");
+
+    botonResaltar.addEventListener("click", function () {
+      resaltado.classList.toggle("resaltado");
+    });
+
+    botonOcultar.addEventListener("click", function () {
+      oculto.classList.toggle("oculto");
+    });
+  </script>
+</html>
