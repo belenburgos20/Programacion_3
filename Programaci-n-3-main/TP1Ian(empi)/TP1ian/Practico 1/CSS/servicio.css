@@ -1,0 +1,156 @@
+body {
+  font-family: 'Poppins', sans-serif; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  gap: 0px;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.descripcion {
+  display: block;
+  padding: 0px;
+  text-align: center;
+  margin-bottom: 30px;
+  margin-left: auto; 
+  margin-right: auto; 
+  margin-bottom: 40px;
+  width: fit-content; 
+}
+
+h2 {
+  border-radius: 5px;
+  display: block;
+  padding: 0px;
+  color: rgb(76, 166, 214);
+  text-align: center;
+  margin-left: auto; 
+  margin-right: auto; 
+  width: fit-content; 
+}
+
+.imagen-fondo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-image: url('../Imagenes/fondo5jpg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1); 
+  z-index: -1;
+}
+.nav {
+  margin: 0px;
+  display: flex;
+  list-style: none;
+  padding: 0px;
+  background-color: rgb(76, 166, 214); 
+  margin: 0;
+  justify-content: center;
+  
+}
+
+nav li {
+  display: inline-block;
+  margin: 0px;
+  
+}
+
+nav a {
+  color: rgb(9, 9, 9);
+  padding:40px;
+  text-decoration:none;
+}
+
+nav a:hover {
+  color: #000;
+}
+.servicio {
+  flex-basis: calc(33.333% - 20px);
+  margin-bottom: 15px;
+  background: #4d4b4b71;
+  color: black;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.servicios {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.servicio img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.servicio:hover {
+  border: 3px solid rgb(76, 166, 214);
+}
+
+.rejilla {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.rejilla :hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+footer {
+  background-color:  rgb(76, 166, 214);
+  color: rgb(0, 0, 0);
+  padding: 10px 20px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.footer-text {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.redes {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  justify-content: flex-end;
+}
+
+.redes li {
+  margin-left: 15px;
+}

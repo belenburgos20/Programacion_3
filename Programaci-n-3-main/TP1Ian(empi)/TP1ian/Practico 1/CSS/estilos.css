@@ -1,0 +1,186 @@
+body {
+    font-family: 'Poppins', sans-serif; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.imagen-fondo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image: url('../Imagenes/fondo5jpg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1); 
+    z-index: -1;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    background-color: rgb(76, 166, 214); 
+    justify-content: center;
+    padding: 0 30px;
+}
+
+nav li {
+    display: inline-block;
+    margin: 0px;   
+}
+
+nav a {
+    color: rgb(9, 9, 9);
+    padding:40px;
+    text-decoration:none;
+  }
+
+nav a:hover {
+    color: #000;
+}
+
+.logo-technova {
+    height: 20%;
+    width: auto;
+}
+
+.sobre-nosotros {
+    background-color: #ffffff10;
+    top:10%;
+    margin-left: 400px;
+    border-radius: 50px;
+    width: 50%;
+    opacity: 0;
+    transition: opacity 2s ease;
+    z-index: 10;
+    background-color: #ffffff10;
+    position: absolute;
+    text-align: center;
+    
+}
+
+.sobre-nosotros:hover{
+    transition-duration: 3s;
+}
+
+.container {
+    width: 100%;
+    background-color: #ffffff10;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    color: rgb(24, 9, 194);
+    z-index: 1;
+    position: relative;
+  }
+  
+  .hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+  }
+  
+  .btn-hero {
+    padding: 12px 24px;
+    background-color: rgb(76, 166, 214);
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-hero:hover {
+    background-color: rgb(54, 138, 182);
+  }
+  
+  .destacados {
+    padding: 60px 20px;
+    text-align: center;
+  }
+  
+  .destacados h2 {
+    color: rgb(76, 166, 214);
+    font-size: 2em;
+    margin-bottom: 30px;
+  }
+  
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .card {
+    background-color: white;
+    padding: 20px;
+    width: 250px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+
+footer {
+    background-color:  rgb(76, 166, 214);
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.footer-text {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.redes {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    justify-content: flex-end;
+}
+
+.redes li {
+    margin-left: 15px;
+}
