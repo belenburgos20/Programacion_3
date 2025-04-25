@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejercicio 5</title>
+        <style>
+            body {
+                background-color: #f0f0f0;
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 20px;
+                justify-content: center;
+            }
+            h1 {
+                text-align: center;
+                color: #333;
+            }
+            form {
+                background-color: #fff;
+                border-radius: 5px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                max-width: 400px;
+                margin: auto;
+            }
+            label {
+                display: block;
+                margin-bottom: 10px;
+                font-weight: bold;
+            }
+            input[type="text"],
+            input[type="email"],
+            input[type="number"] {
+                width: 80%;
+                padding: 10px;
+                margin-bottom: 20px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+            button {
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                align-content: center;
+                font-size: 16px;
+                transition: background-color 0.3s ease;
+            }
+            button:hover {
+                background-color: #0056b3;
+            }
+            .error {
+                color: red;
+                font-size: 12px;
+                margin-top: -15px;
+                margin-bottom: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Ejercicio 5</h1>
+        </header>
+        <main>
+            <form id="form" action="">
+
+                <label for="nombre">Nombre: </label>
+                <input type="text" id="nombre">
+                <div class="error"></div>
+
+                <label for="email">Email: </label>
+                <input type="email" id="email">
+                <div class="error"></div>
+
+                <label for="edad">Edad: </label>
+                <input type="number" id="edad">
+                <div class="error"></div>
+
+                <button type="submit">Enviar</button>
+
+            </form>
+        </main>
+        <footer>
+            
+        </footer>
+        <script>
+            const formulario = document.getElementById("form");
+            formulario.addEventListener("submit", (event) => {
+                event.preventDefault();
+                const nombre = document.getElementById("nombre").value.trim();
+                const email = document.getElementById("email").value.trim();
+                const edad = document.getElementById("edad").value.trim();
+                const nombreError = document.querySelector(".error");
+                const emailError = document.querySelector(".error:nth-of-type(2)");
+                const edadError = document.querySelector(".error:nth-of-type(3)");
+
+                function validarNombre(nombre) {
+                    if (nombre.length < 3) {
+                        nombreError.textContent = "El nombre debe tener al menos 3 caracteres.";
+                        return false;
+                    } else {
+                        nombreError.textContent = "";
+                        return true;
+                    }
+                }
+                function validarEmail(email) {
+                    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!regex.test(email)) {
+                        emailError.textContent = "El email no es válido.";
+                        return false;
+                    } else {
+                        nombreError.textContent = "";
+                        return true;
+                    }
+                }
+                function validarEdad(edad) {
+                    if (isNaN(edad) || edad < 18 || edad > 120) {
+                        edadError.textContent = "La edad no es válida.";
+                        return false;
+                    } else {
+                        nombreError.textContent = "";
+                        return true;
+                    }
+                }
+                if (validarNombre(nombre) && validarEmail(email) && validarEdad(edad)) {
+                    alert("Formulario enviado correctamente.");
+                    formulario.reset();
+                } else {
+                    alert("Por favor, corrige los errores en el formulario.");
+                }
+            });
+        </script>
+    </body>
+</html>
