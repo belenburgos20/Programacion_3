@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicio 4</title>
+        <style>
+            body {
+                background-color: #f0f0f0;
+                font-family: Arial, sans-serif;
+                justify-content: center;
+                align-items: center;
+                display: flex;
+                flex-direction: column;
+            }
+            form {
+                margin-bottom: 20px;
+
+            }
+            button {
+                margin: 5px;
+                padding: 10px 20px;
+                background-color: #007BFF;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                display: inline-block;
+            }
+            button:hover {
+                background-color: #0056b3;
+            }
+            input[type="text"] {
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                width: 200px;
+            }
+            ul {
+                list-style-type: none;
+                padding: 0;
+            }
+            li {
+                margin: 10px 0;
+                padding: 10px;
+                background-color: #fff;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+            li:hover {
+                background-color: #f0f0f0;
+            }
+            .confirmado {
+                background-color: #d4edda;
+                color: #155724;
+            }
+            .confirmado:hover {
+                background-color: #c3e6cb;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Ejercicio 4</h1>
+        </header>
+        <form action="">
+            <label for="nombre">Ingrese un texto:</label>
+            <input type="text" id="texto">
+            <button type="button" id="enviar">Enviar</button>
+        </form>
+        <ul id="lista">
+        </ul>
+    </body>
+    <footer>
+
+    </footer>
+    <script> 
+        let lista = document.getElementById("lista");
+        let botonEnviar = document.getElementById("enviar");
+        let inputTexto = document.getElementById("texto");
+
+        botonEnviar.addEventListener("click", function() {
+            let texto = inputTexto.value;
+            if (texto) {
+                let li = document.createElement("li");
+                li.textContent = texto;
+                lista.appendChild(li);
+                inputTexto.value = ""; 
+            } else {
+                alert("Por favor, ingrese un texto.");
+            }
+        });
+        lista.addEventListener("click", function(event) {
+            if (event.target.tagName === "LI") {
+                event.target.classList.toggle("confirmado");
+            }
+        });
+    </script>
+</html>
