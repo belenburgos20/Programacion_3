@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+    
+    <head>
+        <meta charset="UTF-8"> 
+        <title>Ejercicio sobre DOM</title>
+    </head>
+    <style>
+        h1{
+            text-align: center;
+            color: #000000;
+            font-family: Arial, sans-serif;
+            font-size: 24px;
+        }
+        body{
+            background-color: #f9f592;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        #botongenerador{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        #TextoInput{
+            width: 200px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #000000;
+        }
+        #botonAgregar{
+            padding: 10px 20px;
+            background-color: #ff9a57;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #botonAgregar:hover{
+            background-color: #faa37b;
+        }
+        li{
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        li button{
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 5px 10px;
+        }
+    </style>
+    <body>
+        <h1>Ejercicio 2</h1>
+        <div id="botongenerador">
+           <input type="text" id="TextoInput" placeholder="Escribe aquí">
+           <button id="botonAgregar">Agregar</button>
+           <ul id="lista"></ul>
+        </div>
+        
+        <script>
+            const boton= document.getElementById("botonAgregar");
+            boton.addEventListener("click", function() {
+            const texto = document.getElementById("TextoInput").value;
+            if (texto !== "") {
+                const nuevoItem = document.createElement("li");
+                nuevoItem.textContent = texto;
+                const botonEliminar=document.createElement("button");
+                botonEliminar.textContent="Eliminar";
+
+                botonEliminar.addEventListener("click", function(){
+                nuevoItem.remove()})
+
+                nuevoItem.appendChild(botonEliminar)
+                document.getElementById("lista").appendChild(nuevoItem);
+            }
+            })
+        </script>
+    </body>
+</html>
