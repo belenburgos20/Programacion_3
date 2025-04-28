@@ -51,7 +51,19 @@
             button:hover {
                 background-color: #0056b3;
             }
-            .error {
+            .errorNombre {
+                color: red;
+                font-size: 12px;
+                margin-top: -15px;
+                margin-bottom: 10px;
+            }
+            .errorMail {
+                color: red;
+                font-size: 12px;
+                margin-top: -15px;
+                margin-bottom: 10px;
+            }
+            .errorEdad {
                 color: red;
                 font-size: 12px;
                 margin-top: -15px;
@@ -68,17 +80,17 @@
 
                 <label for="nombre">Nombre: </label>
                 <input type="text" id="nombre">
-                <div class="error"></div>
+                <div class="errorNombre"></div>
 
                 <label for="email">Email: </label>
                 <input type="email" id="email">
-                <div class="error"></div>
+                <div class="errorMail"></div>
 
                 <label for="edad">Edad: </label>
                 <input type="number" id="edad">
-                <div class="error"></div>
+                <div class="errorEdad"></div>
 
-                <button type="submit">Enviar</button>
+                <button id="enviar">Enviar</button>
 
             </form>
         </main>
@@ -86,51 +98,58 @@
             
         </footer>
         <script>
-            const formulario = document.getElementById("form");
-            formulario.addEventListener("submit", (event) => {
-                event.preventDefault();
-                const nombre = document.getElementById("nombre").value.trim();
-                const email = document.getElementById("email").value.trim();
-                const edad = document.getElementById("edad").value.trim();
-                const nombreError = document.querySelector(".error");
-                const emailError = document.querySelector(".error:nth-of-type(2)");
-                const edadError = document.querySelector(".error:nth-of-type(3)");
 
-                function validarNombre(nombre) {
-                    if (nombre.length < 3) {
-                        nombreError.textContent = "El nombre debe tener al menos 3 caracteres.";
-                        return false;
-                    } else {
-                        nombreError.textContent = "";
-                        return true;
-                    }
-                }
-                function validarEmail(email) {
-                    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    if (!regex.test(email)) {
-                        emailError.textContent = "El email no es válido.";
-                        return false;
-                    } else {
-                        nombreError.textContent = "";
-                        return true;
-                    }
-                }
-                function validarEdad(edad) {
-                    if (isNaN(edad) || edad < 18 || edad > 120) {
-                        edadError.textContent = "La edad no es válida.";
-                        return false;
-                    } else {
-                        nombreError.textContent = "";
-                        return true;
-                    }
-                }
-                if (validarNombre(nombre) && validarEmail(email) && validarEdad(edad)) {
-                    alert("Formulario enviado correctamente.");
-                    formulario.reset();
+        const botonEnviar = document.getElementById("enviar");
+
+        botonEnviar.addEventListener("click", (event) => {
+            event.preventDefault();
+
+            const nombre = document.getElementById("nombre").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const edad = document.getElementById("edad").value.trim();
+            const nombreError = document.querySelector(".errorNombre");
+            const emailError = document.querySelector(".errorMail");
+            const edadError = document.querySelector(".errorEdad");
+
+            function validarNombre(nombre) {
+                if (nombre.length < 3) {
+                    nombreError.textContent = "El nombre debe tener al menos 3 caracteres.";
+                    return false;
                 } else {
-                    alert("Por favor, corrige los errores en el formulario.");
+                    nombreError.textContent = "";
+                    return true;
                 }
-            });
+            }
+
+            function validarEmail(email) {
+                const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!regex.test(email)) {
+                    emailError.textContent = "El email no es válido.";
+                    return false;
+                } else {
+                    emailError.textContent = "";
+                    return true;
+                }
+            }
+
+            function validarEdad(edad) {
+                if (isNaN(edad) || edad < 18 || edad > 120) {
+                    edadError.textContent = "La edad no es válida.";
+                    return false;
+                } else {
+                    edadError.textContent = "";
+                    return true;
+                }
+            }
+
+            if (validarNombre(nombre) && validarEmail(email) && validarEdad(edad)) {
+                alert("Formulario enviado correctamente.");
+                document.getElementById("form").reset();
+            } else {
+                alert("Por favor, corrige los errores en el formulario.");
+            }
+        });
+
         </script>
     </body>
 </html>
