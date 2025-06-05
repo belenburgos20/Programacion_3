@@ -10,7 +10,4 @@ rutaPacientes.post('/',verifyTokenMiddleware,pacientesController.create);
 rutaPacientes.put('/:id',verifyTokenMiddleware,pacientesController.update);
 rutaPacientes.delete('/:id',verifyTokenMiddleware,pacientesController.delete);
 
-//Otras rutas CRUD
-
-
 module.exports = rutaPacientes;

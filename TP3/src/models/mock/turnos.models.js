@@ -7,9 +7,9 @@ class TurnosModel {
 
     // datos usados para prueba
     this.data.push(
-      new Turno(1, "2024-06-10", "09:00", "reservado", 1),
-      new Turno(1, "2024-06-15", "14:30", "reservado", 2),
-      new Turno(1, "2024-06-20", "10:15", "cancelado", 3),
+      new Turno("2024-06-10", "09:00", 1, "reservado", 1),
+      new Turno("2024-06-15", "14:30", 1, "reservado", 2),
+      new Turno("2024-06-20", "10:15", 1, "cancelado", 3),
     )
     this.id = 4
   }
@@ -27,12 +27,16 @@ class TurnosModel {
   getTurnosByPaciente(idPaciente) {
     return new Promise((resolve, reject) => {
       try {
-        const turnos = this.data.filter((turno) => turno.idPaciente == idPaciente && turno.estado !== "cancelado")
+        const turnos = this.data.filter((turno) => turno.pacienteId == idPaciente && turno.estado !== "cancelado")
         resolve(turnos)
       } catch (error) {
         reject(error)
       }
     })
+  }
+
+  listByPaciente(idPaciente) {
+    return this.getTurnosByPaciente(idPaciente)
   }
 
   create(turno) {
@@ -44,6 +48,33 @@ class TurnosModel {
 
         turno.id = this.id++
         this.data.push(turno)
+        resolve(turno)
+      } catch (error) {
+        reject(error)
+      }
+    })
+  }
+
+  update(idTurno, turnoActualizado) {
+    return new Promise((resolve, reject) => {
+      try {
+        const turno = this.data.find((t) => t.id == idTurno)
+
+        if (!turno) {
+          throw new Error("Turno no encontrado")
+        }
+
+        if (turno.estado === "cancelado") {
+          throw new Error("No se puede actualizar un turno cancelado")
+        }
+
+        turno.fecha = turnoActualizado.fecha
+        turno.hora = turnoActualizado.hora
+        turno.pacienteId = turnoActualizado.pacienteId
+        if (turnoActualizado.estado) {
+          turno.estado = turnoActualizado.estado
+        }
+
         resolve(turno)
       } catch (error) {
         reject(error)
@@ -85,6 +116,9 @@ class TurnosModel {
       }
     })
   }
+
+  // TODO: Problemas con delete, no borra el turno.
+
 }
 
 module.exports = new TurnosModel()
