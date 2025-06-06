@@ -10,6 +10,5 @@ rutaTurnos.put("/:id", verifyTokenMiddleware, turnosController.update)
 rutaTurnos.delete("/:id", verifyTokenMiddleware, turnosController.delete)
 rutaTurnos.get("/:id", verifyTokenMiddleware, turnosController.getTurnoPorId)
 rutaTurnos.get("/paciente/:pacienteId", verifyTokenMiddleware, turnosController.getTurnosPorPaciente)
-rutaTurnos.patch("/:id/cancelar", verifyTokenMiddleware, turnosController.cancelarTurno)
 
 module.exports = rutaTurnos
