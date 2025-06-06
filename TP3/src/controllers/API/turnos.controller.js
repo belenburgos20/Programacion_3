@@ -69,6 +69,16 @@ class TurnosController {
         res.status(404).json({ message: `No existe el turno con id: ${id}`, error })
       })
   }
+
+  async cancel(req, res) {
+    const id = req.params.id;
+    try {
+      const cancelado = await turnosmodel.cancel(id);
+      res.status(200).json({ message: "Turno cancelado correctamente", turno: cancelado });
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  }
 }
 
 module.exports = new TurnosController()

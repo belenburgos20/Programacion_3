@@ -1,4 +1,4 @@
-const Turno = require("./entities/turno.entity.js")
+const Turno = require("./entities/turnos.entity.js")
 
 class TurnosModel {
   constructor() {

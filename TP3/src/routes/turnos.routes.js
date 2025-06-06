@@ -9,5 +9,7 @@ rutaTurnos.get("/:id", verifyTokenMiddleware, turnosController.getTurnoById)
 rutaTurnos.get("/paciente/:id", verifyTokenMiddleware, turnosController.listByPaciente)
 rutaTurnos.post("/", verifyTokenMiddleware, turnosController.create)
 rutaTurnos.put("/:id", verifyTokenMiddleware, turnosController.update)
+rutaTurnos.delete("/:id", verifyTokenMiddleware, turnosController.cancel)
+
 
 module.exports = rutaTurnos

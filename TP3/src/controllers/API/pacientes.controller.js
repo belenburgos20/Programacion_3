@@ -1,5 +1,8 @@
 const pacientesModel = require("./../../models/mock/pacientes.models.js");
 const Paciente = require("./../../models/mock/entities/paciente.entity.js");
+const jwt = require("jsonwebtoken");
+const Config = require("../../config/config.js");
+
 
 class PacientesController {
   async login(req, res) {
@@ -7,10 +10,22 @@ class PacientesController {
     try {
       const { email, password } = req.body;
 
-      const token = await pacientesModel.validate(email, password);
-    
-      res.status(200).json(token);
-   
+      const paciente = await pacientesModel.validate(email, password);
+
+      if (!paciente) {
+        return res.status(401).json({ message: "Email o contraseña incorrectos" });
+      }
+      const payload = {
+        id: paciente.id,
+        email: paciente.email,
+        nombre: paciente.nombre
+      };
+
+      const token = jwt.sign(payload, Config.secretWord, { expiresIn: "1h" });
+
+      // Devolver token
+      res.status(200).json({ token });
+
     } catch (error) {
       res.status(401).json({ message: error.message });
     }
@@ -30,15 +45,16 @@ class PacientesController {
   delete(req, res) {
     const id = req.params.id;
 
-    const pacienteBorrado = pacientesModel.delete(id)   ;
-    pacienteBorrado.then(paciente=>{
-        res.status(200).json(paciente);
+    const pacienteBorrado = pacientesModel.delete(id);
+    pacienteBorrado.then(paciente => {
+      res.status(200).json(paciente);
     }).catch(
-        error=>{
-            res.status(404).json({message:`no existe el paciente conh el id:${id}`,error})}
-        
+      error => {
+        res.status(404).json({ message: `no existe el paciente conh el id:${id}`, error })
+      }
+
     );
-   
+
   }
   update(req, res) {
     const id = req.params.id;
