@@ -1,7 +1,5 @@
-const { Turno } = require("../sqlite/entities/turno.entity.js")
-const { Paciente } = require("../sqlite/entities/paciente.entity.js")
-
-// CRUDS
+const {Turno} = require("../sqlite/entities/turno.entity.js")
+const {Paciente} = require("../sqlite/entities/paciente.entity.js")
 
 const getTurnosModel = async () => {
   const turnos = await Turno.findAll({
@@ -9,7 +7,7 @@ const getTurnosModel = async () => {
       {
         model: Paciente,
         as: "paciente",
-        attributes: ["id", "name", "email"],
+        attributes: ["id", "dni", "nombre", "apellido", "email"],
       },
     ],
   })
@@ -22,7 +20,7 @@ const getTurnoPorIdModel = async (id) => {
       {
         model: Paciente,
         as: "paciente",
-        attributes: ["id", "name", "email"], 
+        attributes: ["id", "dni", "nombre", "apellido", "email"],
       },
     ],
   })
@@ -50,7 +48,7 @@ const deleteTurnoModel = async (id) => {
     where: { id: id },
   })
   if (deleted) {
-    return { message: "Turno borrado con éxito" }
+    return { message: "Turno borrado con exito" }
   }
   throw new Error("Turno no encontrado")
 }
@@ -62,7 +60,7 @@ const getTurnosPorPacienteModel = async (pacienteId) => {
       {
         model: Paciente,
         as: "paciente",
-        attributes: ["id", "name", "email"], 
+        attributes: ["id", "dni", "nombre", "apellido", "email"],
       },
     ],
   })

@@ -5,8 +5,8 @@ const Config = require("../../config/config.js");
 
 
 class PacientesController {
+
   async login(req, res) {
-    //recolecto credenciales
     try {
       const { email, password } = req.body;
 
@@ -23,7 +23,6 @@ class PacientesController {
 
       const token = jwt.sign(payload, Config.secretWord, { expiresIn: "1h" });
 
-      // Devolver token
       res.status(200).json({ token });
 
     } catch (error) {
@@ -34,6 +33,7 @@ class PacientesController {
   async list(req, res) {
     res.status(200).json(await pacientesModel.list());
   }
+
   async create(req, res) {
     const { dni, nombre, apellido, email } = req.body;
 
@@ -42,6 +42,7 @@ class PacientesController {
     const info = await pacientesModel.create(nuevoPaciente);
     res.status(200).json(info);
   }
+
   delete(req, res) {
     const id = req.params.id;
 
@@ -56,6 +57,7 @@ class PacientesController {
     );
 
   }
+  
   update(req, res) {
     const id = req.params.id;
     const { dni, nombre, apellido, email } = req.body;

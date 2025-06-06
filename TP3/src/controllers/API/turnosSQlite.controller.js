@@ -1,7 +1,7 @@
 const turnosModel = require("../../models/sqlite/turnos.model")
-const Turno = require("../../models/sqlite/entities/turno.entity")
 
 class TurnosController {
+  
   async list(req, res) {
     try {
       const turnos = await turnosModel.getTurnosModel()
@@ -13,9 +13,22 @@ class TurnosController {
 
   async create(req, res) {
     try {
-      const { fecha, hora, pacienteId, especialistaId } = req.body
-      const nuevoTurno = new Turno(fecha, hora, pacienteId, especialistaId)
-      const turnoCreado = await turnosModel.create(nuevoTurno)
+      const { fecha, hora, pacienteId } = req.body
+
+      if (!fecha || !hora || !pacienteId) {
+        return res.status(400).json({
+          message: "Fecha, hora y pacienteId son requeridos",
+        })
+      }
+
+      const nuevoTurno = {
+        fecha,
+        hora,
+        pacienteId,
+        estado: "reservado",
+      }
+
+      const turnoCreado = await turnosModel.createTurnoModel(nuevoTurno)
       res.status(201).json(turnoCreado)
     } catch (error) {
       res.status(500).json({ message: "Error al crear el turno", error })
@@ -28,6 +41,7 @@ class TurnosController {
       const turnoBorrado = await turnosModel.deleteTurnoModel(id)
       res.status(200).json(turnoBorrado)
     } catch (error) {
+      const id = req.params.id
       res.status(404).json({ message: `No existe el turno con el id: ${id}`, error })
     }
   }
@@ -35,10 +49,17 @@ class TurnosController {
   async update(req, res) {
     try {
       const id = req.params.id
-      const { fecha, hora, pacienteId, especialistaId } = req.body
-      const turnoActualizado = await turnosModel.updateTurnoModel(id, { fecha, hora, pacienteId, especialistaId })
+      const { fecha, hora, pacienteId, estado } = req.body
+
+      const turnoData = { fecha, hora, pacienteId }
+      if (estado) {
+        turnoData.estado = estado
+      }
+
+      const turnoActualizado = await turnosModel.updateTurnoModel(id, turnoData)
       res.status(200).json(turnoActualizado)
     } catch (error) {
+      const id = req.params.id
       res.status(404).json({ message: `No existe el turno con el id: ${id}`, error })
     }
   }
@@ -46,7 +67,7 @@ class TurnosController {
   async getTurnoPorId(req, res) {
     try {
       const id = req.params.id
-      const turno = await turnosModel.getTurnoByIdModel(id)
+      const turno = await turnosModel.getTurnoPorIdModel(id)
       if (!turno) {
         return res.status(404).json({ message: `No existe el turno con el id: ${id}` })
       }
@@ -68,8 +89,7 @@ class TurnosController {
       res.status(500).json({ message: "Error al obtener los turnos del paciente", error })
     }
   }
-
-  //TODO: problemas con el delete, no se borra bien el turno
 }
 
 module.exports = new TurnosController()
+

@@ -1,6 +1,4 @@
-const { Paciente } = require("../sqlite/entities/paciente.entity.js")
-const jwt = require("jsonwebtoken")
-const config = require("../../config/config.js")
+const {Paciente} = require("../sqlite/entities/paciente.entity.js")
 
 const getPacientesModel = async () => {
   return await Paciente.findAll()
@@ -12,22 +10,27 @@ const getPacientePorIdModel = async (id) => {
 
 const validate = async (email, password) => {
   const paciente = await Paciente.findOne({ where: { email: email } })
+
   if (!paciente || paciente.password !== password) {
     return null
   }
-  return paciente
+
+  return paciente 
 }
 
 const list = async () => {
   return await Paciente.findAll({
-    attributes: ["id", "name", "email"],
+    attributes: ["id", "dni", "nombre", "apellido", "email"],
   })
 }
 
 const create = async (pacienteData) => {
   const newPaciente = await Paciente.create({
-    name: `${pacienteData.nombre} ${pacienteData.apellido}`,
+    dni: pacienteData.dni,
+    nombre: pacienteData.nombre,
+    apellido: pacienteData.apellido,
     email: pacienteData.email,
+    password: pacienteData.password || "123456",
   })
   return newPaciente
 }
@@ -35,7 +38,9 @@ const create = async (pacienteData) => {
 const update = async (id, pacienteData) => {
   const [updated] = await Paciente.update(
     {
-      name: `${pacienteData.nombre} ${pacienteData.apellido}`,
+      dni: pacienteData.dni,
+      nombre: pacienteData.nombre,
+      apellido: pacienteData.apellido,
       email: pacienteData.email,
     },
     {
@@ -49,7 +54,7 @@ const update = async (id, pacienteData) => {
   throw new Error("Paciente no encontrado")
 }
 
-const deleteById = async (id) => {
+const deletePorId = async (id) => {
   const deleted = await Paciente.destroy({
     where: { id: id },
   })
@@ -67,5 +72,7 @@ module.exports = {
   list,
   create,
   update,
-  deleteById,
+  deletePorId,
 }
+
+

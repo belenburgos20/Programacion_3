@@ -1,5 +1,5 @@
-const { DataTypes } = require("sequelize")
-const { sequelize } = require("./../config/db.js")
+const {DataTypes} = require("sequelize")
+const {sequelize} = require("./../config/db.js")
 
 const Turno = sequelize.define("Turno", {
   id: {
@@ -7,21 +7,26 @@ const Turno = sequelize.define("Turno", {
     primaryKey: true,
     autoIncrement: true,
   },
-  fecha: DataTypes.DATE,
-  hora: DataTypes.TIME,
+  fecha: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  hora: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   pacienteId: {
     type: DataTypes.INTEGER,
+    allowNull: false,
     references: {
       model: "Pacientes",
       key: "id",
     },
   },
-  profesionalId: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: "Profesionales",
-      key: "id",
-    },
+  estado: {
+    type: DataTypes.STRING,
+    defaultValue: "reservado",
+    allowNull: false,
   },
 })
 
