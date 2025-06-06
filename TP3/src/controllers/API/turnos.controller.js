@@ -15,7 +15,6 @@ class TurnosController {
     try {
       const { fecha, hora, pacienteId } = req.body
 
-      // Validar datos requeridos
       if (!fecha || !hora || !pacienteId) {
         return res.status(400).json({ message: "Fecha, hora y pacienteId son requeridos" })
       }
@@ -32,7 +31,6 @@ class TurnosController {
     const id = req.params.id
     const { fecha, hora, pacienteId, estado } = req.body
 
-    // Validar datos requeridos
     if (!fecha || !hora || !pacienteId) {
       return res.status(400).json({ message: "Fecha, hora y pacienteId son requeridos" })
     }
@@ -51,7 +49,7 @@ class TurnosController {
   async listByPaciente(req, res) {
     try {
       const pacienteId = req.params.id
-      const turnos = await turnosmodel.getTurnosByPaciente(pacienteId)
+      const turnos = await turnosmodel.getTurnosPorPaciente(pacienteId)
       res.status(200).json(turnos)
     } catch (error) {
       res.status(500).json({ message: "Error al obtener turnos del paciente", error: error.message })

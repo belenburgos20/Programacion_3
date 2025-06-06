@@ -13,7 +13,6 @@ const verifyTokenMiddleware = (req, res, next) => {
   try {
     //si no verifica salta una excepcion
 
-
     //const decoded = verifyToken(token,jwtConfig.JWT_SECRET);
     const decoded = jwt.verify(token, Config.secretWord);
     //guardar en el usuario que se verificó ok

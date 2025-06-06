@@ -25,4 +25,4 @@ const Turno = sequelize.define("Turno", {
   },
 })
 
-module.exports = { Turno }
+module.exports = {Turno}

@@ -1,43 +1,71 @@
-const {Paciente} = require('../sqlite/entities/paciente.entity.js');
+const { Paciente } = require("../sqlite/entities/paciente.entity.js")
+const jwt = require("jsonwebtoken")
+const config = require("../../config/config.js")
 
-const getPacientesModel =  ()=>{
-  const users = Paciente.findAll();
-  return users;
+const getPacientesModel = async () => {
+  return await Paciente.findAll()
 }
 
-//TODO: agregar operaciones CRUD
-
-const getPacienteById = (id) => {
-  return Paciente.findByPk(id);
+const getPacientePorIdModel = async (id) => {
+  return await Paciente.findByPk(id)
 }
 
-const createPaciente = (paciente) => {
-  return Paciente.create(paciente);
+const validate = async (email, password) => {
+  const paciente = await Paciente.findOne({ where: { email: email } })
+  if (!paciente || paciente.password !== password) {
+    return null
+  }
+  return paciente
 }
 
-const updatePaciente = (id, paciente) => {
-  return Paciente.update(paciente, {
-    where: { id: id }
-  });
+const list = async () => {
+  return await Paciente.findAll({
+    attributes: ["id", "name", "email"],
+  })
 }
 
-const deletePaciente = (id) => {
-  return Paciente.destroy({
-    where: { id: id }
-  });
+const create = async (pacienteData) => {
+  const newPaciente = await Paciente.create({
+    name: `${pacienteData.nombre} ${pacienteData.apellido}`,
+    email: pacienteData.email,
+  })
+  return newPaciente
 }
 
-const getPacientesByDni = (dni) => {
-  return Paciente.findAll({
-    where: { dni: dni }
-  });
+const update = async (id, pacienteData) => {
+  const [updated] = await Paciente.update(
+    {
+      name: `${pacienteData.nombre} ${pacienteData.apellido}`,
+      email: pacienteData.email,
+    },
+    {
+      where: { id: id },
+    },
+  )
+
+  if (updated) {
+    return await Paciente.findByPk(id)
+  }
+  throw new Error("Paciente no encontrado")
+}
+
+const deleteById = async (id) => {
+  const deleted = await Paciente.destroy({
+    where: { id: id },
+  })
+
+  if (deleted) {
+    return { message: "Paciente eliminado correctamente" }
+  }
+  throw new Error("Paciente no encontrado")
 }
 
 module.exports = {
   getPacientesModel,
-  getPacienteById,
-  createPaciente,
-  updatePaciente,
-  deletePaciente,
-  getPacientesByDni
-};
+  getPacientePorIdModel,
+  validate,
+  list,
+  create,
+  update,
+  deleteById,
+}

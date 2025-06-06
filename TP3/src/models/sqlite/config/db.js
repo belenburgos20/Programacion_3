@@ -9,6 +9,13 @@ const sequelize = new Sequelize({
 
 const connectDB = async () => {
   try {
+
+    const {Paciente} = require('../sqlite/entities/paciente.entity.js');
+    const {Turno} = require('../sqlite/entities/turno.entity.js');
+
+    Paciente.hasMany(Turno, { foreignKey: 'pacienteId', as: 'turnos' });
+    Turno.belongsTo(Paciente, { foreignKey: 'pacienteId', as: 'paciente' });
+
     await sequelize.sync();
     console.log('Base de datos conectada.');
   } catch (error) {

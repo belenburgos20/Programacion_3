@@ -1,5 +1,5 @@
 const {Router} = require('express');
-const pacientesController = require('../controllers/API/pacientes.controller.js');
+const pacientesController = require('../controllers/API/pacientesSQLite.controller.js');
 const  {verifyTokenMiddleware}  = require('../middlewares/verifyToken.middleware.js');
 
 const rutaPacientes = Router();
