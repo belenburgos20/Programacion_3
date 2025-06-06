@@ -81,6 +81,17 @@ class PacientesController {
       res.status(404).json({ message: error.message })
     }
   }
+
+  async getPacientePorId(req, res) {
+    try {
+      const id = req.params.id
+      const paciente = await pacientesModel.getPacientePorId(id)
+      res.status(200).json(paciente)
+    } catch (error) {
+      res.status(404).json({ message: error.message })
+    }
+  }
+
 }
 
 module.exports = new PacientesController()
