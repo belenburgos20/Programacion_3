@@ -6,20 +6,24 @@
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <h1><%= message %></h1>
-    <h2>Estoy en EJS</h2>
-    <p>Bienvenido a nuestra aplicación</p>
-
-    <% if (showFeatures) { %>
-    <h2>Características principales:</h2>
-    <ul>
-      <% features.forEach(function(feature) { %>
-      <li><%= feature %></li>
-      <% }); %>
-    </ul>
-    <% } else { %>
-    <p>No hay características disponibles.</p>
-    <% } %> <%# Esto es un comentario (no se renderiza en el HTML) %>
+    <h1>La última tecnología para ayudarte</h1>
+    <p>Estamos para ayudarte</p>
+    <button onclick="document.getElementById('login').style.display='block'">
+  Portal Pacientes
+    </button>
+    <div id="login" style="display:none;">
+      <form method="POST" action="/login">
+        <h2>Login</h2>
+        <label>user:</label>
+        <input type="text" name="usuario" required><br>
+        <label>password:</label>
+        <input type="password" name="contraseña" required><br>
+        <button type="submit">Ingresar</button>
+      </form>
+    </div>
+      <a href="/turnos" style="text-decoration: none; color: inherit;">
+        Agenda de Turnos
+      </a>
 
     <footer>
       <p>© <%= new Date().getFullYear() %> Mi Aplicación</p>
