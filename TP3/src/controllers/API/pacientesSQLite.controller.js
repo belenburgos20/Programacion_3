@@ -3,30 +3,31 @@ const jwt = require("jsonwebtoken")
 const Config = require("../../config/config.js")
 
 class PacientesController {
-  
+
   async login(req, res) {
     try {
-      const { email, password } = req.body
+      const { email, password } = req.body;
 
-      const paciente = await pacientesModel.validate(email, password)
+      const paciente = await pacientesModel.validate(email, password);
 
       if (!paciente) {
-        return res.status(401).json({ message: "Email o contraseña incorrectos" })
+        return res.status(401).json({ message: "Email o contraseña incorrectos" });
       }
 
       const payload = {
         id: paciente.id,
         email: paciente.email,
-        nombre: paciente.nombre,
-      }
+        nombre: paciente.nombre
+      };
 
-      const token = jwt.sign(payload, Config.secretWord, { expiresIn: Config.expiresIn })
+      const token = jwt.sign(payload, Config.secretWord, { expiresIn: Config.expiresIn });
 
-      res.status(200).json({ token })
+      res.status(200).json({ token });
     } catch (error) {
-      res.status(500).json({ message: error.message })
+      res.status(500).json({ message: error.message });
     }
   }
+
 
   async list(req, res) {
     try {

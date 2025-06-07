@@ -10,8 +10,8 @@ const sequelize = new Sequelize({
 const connectDB = async () => {
   try {
 
-    const {Paciente} = require('../sqlite/entities/paciente.entity.js');
-    const {Turno} = require('../sqlite/entities/turno.entity.js');
+    const { Paciente } = require('../entities/paciente.entity.js');
+    const { Turno } = require('../entities/turno.entity.js');
 
     Paciente.hasMany(Turno, { foreignKey: 'pacienteId', as: 'turnos' });
     Turno.belongsTo(Paciente, { foreignKey: 'pacienteId', as: 'paciente' });
