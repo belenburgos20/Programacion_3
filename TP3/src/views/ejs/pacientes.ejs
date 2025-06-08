@@ -7,12 +7,11 @@
     <link rel="stylesheet" href="/modal.css" />
   </head>
   <body>
-    <h1>Portal de Administración</h1>
-    <p>Gestión de Pacientes y Turnos</p>
-    
-    <div style="margin-bottom: 2rem;">
-      <a href="/" class="btn-primary">Volver al Inicio</a>
-    </div>
+    <div class="container">
+      <header class="header">
+        <h1>Sistema de Gestión de Clínica</h1>
+        <p>La última tecnología para ayudarte</p>
+      </header>
 
     <% if (typeof error !== 'undefined') { %>
       <div class="form-message error">
@@ -178,11 +177,12 @@
         </form>
       </div>
     </div>
-
+    <div style="margin-bottom: 2rem;">
+      <a href="/" class="btn-primary">Volver al Inicio</a>
+    </div>
     <script src="/pacientes.js"></script>
-
     <footer>
-      <p>© <%= new Date().getFullYear() %> Sistema de Gestión de Clínica</p>
+      <p>© <%= new Date().getFullYear() %> Technova</p>
     </footer>
   </body>
 </html>
