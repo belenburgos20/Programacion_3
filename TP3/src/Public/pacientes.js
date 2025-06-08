@@ -1,3 +1,25 @@
+function getToken() {
+  return localStorage.getItem("authToken")
+}
+
+function getAuthHeaders() {
+  const token = getToken()
+  return {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  }
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  const urlParams = new URLSearchParams(window.location.search)
+  const token = urlParams.get("token")
+
+  if (token) {
+    localStorage.setItem("authToken", token)
+    window.history.replaceState({}, document.title, window.location.pathname)
+  }
+})
+
 function mostrarFormularioPaciente() {
   document.getElementById("tituloModalPaciente").textContent = "Agregar Paciente"
   document.getElementById("formPaciente").reset()
@@ -15,20 +37,24 @@ function editarPaciente(id, dni, nombre, apellido, email) {
   document.getElementById("modalPaciente").style.display = "flex"
 }
 
-function eliminarPaciente(id) {
+async function eliminarPaciente(id) {
   if (confirm("¿Está seguro de que desea eliminar este paciente?")) {
-    fetch("/api/v1/pacientes/" + id, {
-      method: "DELETE",
-    })
-      .then((response) => response.json())
-      .then((data) => {
+    try {
+      const response = await fetch("/api/v1/pacientes/" + id, {
+        method: "DELETE",
+        headers: getAuthHeaders(),
+      })
+
+      if (response.ok) {
         alert("Paciente eliminado correctamente")
         location.reload()
-      })
-      .catch((error) => {
+      } else {
         alert("Error al eliminar paciente")
-        console.error(error)
-      })
+      }
+    } catch (error) {
+      console.error("Error:", error)
+      alert("Error al eliminar paciente")
+    }
   }
 }
 
@@ -39,38 +65,44 @@ function mostrarFormularioTurno() {
   document.getElementById("modalTurno").style.display = "flex"
 }
 
-function editarTurno(id) {
-  fetch("/api/v1/turnos/" + id)
-    .then((response) => response.json())
-    .then((turno) => {
-      document.getElementById("tituloModalTurno").textContent = "Editar Turno"
-      document.getElementById("turnoId").value = turno.id
-      document.getElementById("fecha").value = turno.fecha
-      document.getElementById("hora").value = turno.hora
-      document.getElementById("pacienteSelect").value = turno.pacienteId
-      document.getElementById("estado").value = turno.estado
-      document.getElementById("modalTurno").style.display = "flex"
+async function editarTurno(id) {
+  try {
+    const response = await fetch("/api/v1/turnos/" + id, {
+      headers: getAuthHeaders(),
     })
-    .catch((error) => {
-      alert("Error al cargar datos del turno")
-      console.error(error)
-    })
+    const turno = await response.json()
+
+    document.getElementById("tituloModalTurno").textContent = "Editar Turno"
+    document.getElementById("turnoId").value = turno.id
+    document.getElementById("fecha").value = turno.fecha
+    document.getElementById("hora").value = turno.hora
+    document.getElementById("pacienteSelect").value = turno.pacienteId
+    document.getElementById("estado").value = turno.estado
+    document.getElementById("modalTurno").style.display = "flex"
+  } catch (error) {
+    alert("Error al cargar datos del turno")
+    console.error(error)
+  }
 }
 
-function eliminarTurno(id) {
+async function eliminarTurno(id) {
   if (confirm("¿Está seguro de que desea eliminar este turno?")) {
-    fetch("/api/v1/turnos/" + id, {
-      method: "DELETE",
-    })
-      .then((response) => response.json())
-      .then((data) => {
+    try {
+      const response = await fetch("/api/v1/turnos/" + id, {
+        method: "DELETE",
+        headers: getAuthHeaders(),
+      })
+
+      if (response.ok) {
         alert("Turno eliminado correctamente")
         location.reload()
-      })
-      .catch((error) => {
+      } else {
         alert("Error al eliminar turno")
-        console.error(error)
-      })
+      }
+    } catch (error) {
+      console.error("Error:", error)
+      alert("Error al eliminar turno")
+    }
   }
 }
 
@@ -78,7 +110,7 @@ function cerrarModal(modalId) {
   document.getElementById(modalId).style.display = "none"
 }
 
-document.getElementById("formPaciente").addEventListener("submit", (e) => {
+document.getElementById("formPaciente").addEventListener("submit", async (e) => {
   e.preventDefault()
 
   const id = document.getElementById("pacienteId").value
@@ -92,25 +124,26 @@ document.getElementById("formPaciente").addEventListener("submit", (e) => {
   const url = id ? "/api/v1/pacientes/" + id : "/api/v1/pacientes"
   const method = id ? "PUT" : "POST"
 
-  fetch(url, {
-    method: method,
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
-    .then((response) => response.json())
-    .then((data) => {
+  try {
+    const response = await fetch(url, {
+      method: method,
+      headers: getAuthHeaders(),
+      body: JSON.stringify(data),
+    })
+
+    if (response.ok) {
       alert(id ? "Paciente actualizado correctamente" : "Paciente creado correctamente")
       location.reload()
-    })
-    .catch((error) => {
+    } else {
       alert("Error al guardar paciente")
-      console.error(error)
-    })
+    }
+  } catch (error) {
+    console.error("Error:", error)
+    alert("Error al guardar paciente")
+  }
 })
 
-document.getElementById("formTurno").addEventListener("submit", (e) => {
+document.getElementById("formTurno").addEventListener("submit", async (e) => {
   e.preventDefault()
 
   const id = document.getElementById("turnoId").value
@@ -124,22 +157,23 @@ document.getElementById("formTurno").addEventListener("submit", (e) => {
   const url = id ? "/api/v1/turnos/" + id : "/api/v1/turnos"
   const method = id ? "PUT" : "POST"
 
-  fetch(url, {
-    method: method,
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  })
-    .then((response) => response.json())
-    .then((data) => {
+  try {
+    const response = await fetch(url, {
+      method: method,
+      headers: getAuthHeaders(),
+      body: JSON.stringify(data),
+    })
+
+    if (response.ok) {
       alert(id ? "Turno actualizado correctamente" : "Turno creado correctamente")
       location.reload()
-    })
-    .catch((error) => {
+    } else {
       alert("Error al guardar turno")
-      console.error(error)
-    })
+    }
+  } catch (error) {
+    console.error("Error:", error)
+    alert("Error al guardar turno")
+  }
 })
 
 window.onclick = (event) => {
