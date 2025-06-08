@@ -42,6 +42,11 @@ class Server {
     this.app.use("/api/v1/pacientes", rutaPacientes)
     this.app.use("/", home)
 
+    this.app.use("/pacientes", (req, res) => {
+      const pacientesController = require("./controllers/API/pacientesSQLite.controller.js")
+      pacientesController.mostrarPagina(req, res)
+    })
+
     // aca van las otras rutas
     this.app.use("/api/v1/turnos", rutaTurnos)
   }
@@ -54,3 +59,4 @@ class Server {
 }
 
 module.exports = Server
+

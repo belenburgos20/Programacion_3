@@ -4,23 +4,185 @@
     <title><%= title %></title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="/estilos.css" />
+    <link rel="stylesheet" href="/modal.css" />
   </head>
   <body>
-    <h1>Portal Pacientes</h1>
-    <p>Bienvenido al portal de pacientes</p>
-    <ul>
-      <% if (pacientes && pacientes.length === 0) { %>
-        <li>No hay pacientes registrados.</li>
-      <% } else if (pacientes) { %>
-        <% pacientes.forEach(p => { %>
-          <li><%= p.nombre %> <%= p.apellido %> - DNI: <%= p.dni %> - Email: <%= p.email %></li>
-        <% }); %>
+    <h1>Portal de Administración</h1>
+    <p>Gestión de Pacientes y Turnos</p>
+    
+    <div style="margin-bottom: 2rem;">
+      <a href="/" class="btn-primary">Volver al Inicio</a>
+    </div>
+
+    <% if (typeof error !== 'undefined') { %>
+      <div class="form-message error">
+        <%= error %>
+      </div>
+    <% } %>
+
+    <section style="margin-bottom: 3rem;">
+      <div class="section-header">
+        <h2>Pacientes Registrados</h2>
+        <button onclick="mostrarFormularioPaciente()" class="btn-primary">Agregar Paciente</button>
+      </div>
+      
+      <% if (pacientes && pacientes.length > 0) { %>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>DNI</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Email</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% pacientes.forEach(function(p) { %>
+              <tr>
+                <td><%= p.id %></td>
+                <td><%= p.dni %></td>
+                <td><%= p.nombre %></td>
+                <td><%= p.apellido %></td>
+                <td><%= p.email %></td>
+                <td>
+                  <div class="table-actions">
+                    <button onclick="editarPaciente('<%= p.id %>', '<%= p.dni %>', '<%= p.nombre %>', '<%= p.apellido %>', '<%= p.email %>')" class="btn-secondary">Editar</button>
+                    <button onclick="eliminarPaciente('<%= p.id %>')" class="btn-secondary" style="background-color: #dc3545;">Eliminar</button>
+                  </div>
+                </td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
       <% } else { %>
-        <li>Error al cargar pacientes.</li>
+        <p>No hay pacientes registrados.</p>
       <% } %>
-    </ul>
+    </section>
+
+    <section>
+      <div class="section-header">
+        <h2>Turnos Programados</h2>
+        <button onclick="mostrarFormularioTurno()" class="btn-primary">Agregar Turno</button>
+      </div>
+      
+      <% if (turnos && turnos.length > 0) { %>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Fecha</th>
+              <th>Hora</th>
+              <th>Paciente</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% turnos.forEach(function(t) { %>
+              <tr>
+                <td><%= t.id %></td>
+                <td><%= t.fecha %></td>
+                <td><%= t.hora %></td>
+                <td>
+                  <% if (t.paciente) { %>
+                    <%= t.paciente.nombre %> <%= t.paciente.apellido %>
+                  <% } else { %>
+                    Paciente ID: <%= t.pacienteId %>
+                  <% } %>
+                </td>
+                <td>
+                  <span class="estado-<%= t.estado %>"><%= t.estado %></span>
+                </td>
+                <td>
+                  <div class="table-actions">
+                    <button onclick="editarTurno('<%= t.id %>')" class="btn-secondary">Editar</button>
+                    <button onclick="eliminarTurno('<%= t.id %>')" class="btn-secondary" style="background-color: #dc3545;">Eliminar</button>
+                  </div>
+                </td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      <% } else { %>
+        <p>No hay turnos programados.</p>
+      <% } %>
+    </section>
+
+    <div id="modalPaciente" class="modal" style="display: none;">
+      <div class="modal-content">
+        <h3 id="tituloModalPaciente">Agregar Paciente</h3>
+        <form id="formPaciente">
+          <input type="hidden" id="pacienteId" />
+          <div class="form-group">
+            <label>DNI:</label>
+            <input type="text" id="dni" required />
+          </div>
+          <div class="form-group">
+            <label>Nombre:</label>
+            <input type="text" id="nombre" required />
+          </div>
+          <div class="form-group">
+            <label>Apellido:</label>
+            <input type="text" id="apellido" required />
+          </div>
+          <div class="form-group">
+            <label>Email:</label>
+            <input type="email" id="email" required />
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">Guardar</button>
+            <button type="button" onclick="cerrarModal('modalPaciente')" class="btn-secondary">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="modalTurno" class="modal" style="display: none;">
+      <div class="modal-content">
+        <h3 id="tituloModalTurno">Agregar Turno</h3>
+        <form id="formTurno">
+          <input type="hidden" id="turnoId" />
+          <div class="form-group">
+            <label>Fecha:</label>
+            <input type="date" id="fecha" required />
+          </div>
+          <div class="form-group">
+            <label>Hora:</label>
+            <input type="time" id="hora" required />
+          </div>
+          <div class="form-group">
+            <label>Paciente:</label>
+            <select id="pacienteSelect" required>
+              <option value="">Seleccionar paciente</option>
+              <% if (pacientes && pacientes.length > 0) { %>
+                <% pacientes.forEach(function(p) { %>
+                  <option value="<%= p.id %>"><%= p.nombre %> <%= p.apellido %> - <%= p.dni %></option>
+                <% }); %>
+              <% } %>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Estado:</label>
+            <select id="estado">
+              <option value="reservado">Reservado</option>
+              <option value="completado">Completado</option>
+              <option value="cancelado">Cancelado</option>
+            </select>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">Guardar</button>
+            <button type="button" onclick="cerrarModal('modalTurno')" class="btn-secondary">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="/pacientes.js"></script>
+
     <footer>
-      <p>© <%= new Date().getFullYear() %> Mi Aplicación</p>
+      <p>© <%= new Date().getFullYear() %> Sistema de Gestión de Clínica</p>
     </footer>
   </body>
 </html>

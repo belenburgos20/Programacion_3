@@ -1,4 +1,4 @@
-const {Paciente} = require("../sqlite/entities/paciente.entity.js")
+const { Paciente } = require("../sqlite/entities/paciente.entity.js")
 
 const getPacientesModel = async () => {
   return await Paciente.findAll()
@@ -15,7 +15,7 @@ const validate = async (email, password) => {
     return null
   }
 
-  return paciente 
+  return paciente
 }
 
 const list = async () => {
@@ -74,5 +74,4 @@ module.exports = {
   update,
   deletePorId,
 }
-
 

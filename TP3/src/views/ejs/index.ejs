@@ -6,28 +6,51 @@
     <link rel="stylesheet" href="/estilos.css" />
   </head>
   <body>
-    <h1>La última tecnología para ayudarte</h1>
-    <p>Estamos para ayudarte</p>
-    <button onclick="document.getElementById('login').style.display='block'">
-  Portal Pacientes
-    </button>
-    <div id="login" style="display:none;">
-      <form method="POST" action="/login">
-        <h2>Login Administrador</h2>
-        <label>Email:</label>
-        <input type="email" name="email" required value="admin@gmail.com"><br>
-        <label>Password:</label>
-        <input type="password" name="password" required value="Admin2345"><br>
-        <button type="submit">Ingresar</button>
-        <button type="button" onclick="document.getElementById('login').style.display='none'">Cancelar</button>
-      </form>
-    </div>
-      <a href="/turnos" style="text-decoration: none; color: inherit;">
-        Agenda de Turnos
-      </a>
+    <div class="container">
+      <header class="header">
+        <h1>Sistema de Gestión de Clínica</h1>
+        <p>La última tecnología para ayudarte</p>
+      </header>
+      
+      <main class="main-content">
+        <% if (typeof query !== 'undefined' && query.error) { %>
+          <div class="error-message">
+            <% if (query.error === 'credenciales_incorrectas') { %>
+              Credenciales incorrectas. Intente nuevamente.
+            <% } else { %>
+              Error en el servidor. Intente más tarde.
+            <% } %>
+          </div>
+        <% } %>
+        
+        <button class="btn-login" onclick="document.getElementById('login').style.display='block'">
+          Portal Administrador
+        </button>
+        
+        <div id="login" class="modal" style="display:none;">
+          <div class="modal-content">
+            <form method="POST" action="/login">
+              <h2>Login Administrador</h2>
+              <div class="form-group">
+                <label>Email:</label>
+                <input type="email" name="email" required value="admin@gmail.com">
+              </div>
+              <div class="form-group">
+                <label>Password:</label>
+                <input type="password" name="password" required value="Admin2345">
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn-primary">Ingresar</button>
+                <button type="button" class="btn-secondary" onclick="document.getElementById('login').style.display='none'">Cancelar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </main>
 
-    <footer>
-      <p>© <%= new Date().getFullYear() %> Mi Aplicación</p>
-    </footer>
+      <footer class="footer">
+        <p>© <%= new Date().getFullYear() %> Sistema de Gestión de Clínica</p>
+      </footer>
+    </div>
   </body>
 </html>

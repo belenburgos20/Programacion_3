@@ -1,25 +1,20 @@
-const jwt = require("jsonwebtoken")
 const Config = require("../../config/config.js")
 
-const mockUser = {
-  id: 1,
-  email: Config.admin.user,
-  password: Config.admin.password,
+const login = async (req, res) => {
+  try {
+    const { email, password } = req.body
+
+    if (email === Config.admin.user && password === Config.admin.password) {
+      res.redirect("/pacientes")
+    } else {
+      res.redirect("/?error=credenciales_incorrectas")
+    }
+  } catch (error) {
+    console.error("Error en login:", error)
+    res.redirect("/?error=error_servidor")
+  }
 }
 
-exports.login = (req, res) => {
-  const { email, password } = req.body
-
-  console.log("Credenciales recibidas:", { email, password })
-  console.log("Credenciales esperadas:", { email: mockUser.email, password: mockUser.password })
-
-  if (email === mockUser.email && password === mockUser.password) {
-    const token = jwt.sign({ id: mockUser.id, email: mockUser.email }, Config.secretWord, {
-      expiresIn: Config.expiresIn,
-    })
-
-    res.json({ token, message: "Login exitoso" })
-  } else {
-    res.status(401).json({ mensaje: "Credenciales incorrectas" })
-  }
+module.exports = {
+  login,
 }
