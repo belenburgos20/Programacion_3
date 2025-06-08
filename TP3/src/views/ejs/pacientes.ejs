@@ -3,18 +3,21 @@
   <head>
     <title><%= title %></title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/estilos.css" />
   </head>
   <body>
     <h1>Portal Pacientes</h1>
     <p>Bienvenido al portal de pacientes</p>
-    <ul>if (pacientes.length === 0{{ %>
-      <li>No hay pacientes registrados.</li><% 
-    } else { %>
-     <% pacientes.forEach(p => { %>
-        <li><%= p.nombre %> - <%= p.edad %> años</li>
-      <% }); %>}
-    <% }) %>
+    <ul>
+      <% if (pacientes && pacientes.length === 0) { %>
+        <li>No hay pacientes registrados.</li>
+      <% } else if (pacientes) { %>
+        <% pacientes.forEach(p => { %>
+          <li><%= p.nombre %> <%= p.apellido %> - DNI: <%= p.dni %> - Email: <%= p.email %></li>
+        <% }); %>
+      <% } else { %>
+        <li>Error al cargar pacientes.</li>
+      <% } %>
     </ul>
     <footer>
       <p>© <%= new Date().getFullYear() %> Mi Aplicación</p>

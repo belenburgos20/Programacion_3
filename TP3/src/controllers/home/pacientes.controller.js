@@ -1,17 +1,21 @@
-const db=require('../../models/sqlite/config/db.js');
+const pacientesModel = require("../../models/sqlite/paciente.model.js");
 
-const pacientesControllers = {
-  mostrarPaciente: (req, res) => {
+const mostrarPaciente = async (req, res) => {
     try {
-      const { Paciente } = require('../../models/sqlite/entities/paciente.entity.js');
-      const pacientes = Paciente.findAll();
-      res.render('pacientes', { pacientes, title: 'Pacientes' });
+        const pacientes = await pacientesModel.list();
+        res.render('pacientes', { 
+            title: 'Portal Pacientes',
+            pacientes: pacientes
+        });
     } catch (error) {
-      console.error('Error al obtener los pacientes:', error);
-      res.status(500).send('Error al obtener los pacientes');
+        res.render('pacientes', { 
+            title: 'Portal Pacientes',
+            pacientes: null,
+            error: error.message
+        });
     }
-  }
-}
+};
 
-
-module.exports = pacientesControllers;
+module.exports = {
+    mostrarPaciente
+};

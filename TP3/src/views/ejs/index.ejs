@@ -3,7 +3,7 @@
   <head>
     <title><%= title %></title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/estilos.css" />
   </head>
   <body>
     <h1>La última tecnología para ayudarte</h1>
@@ -13,12 +13,13 @@
     </button>
     <div id="login" style="display:none;">
       <form method="POST" action="/login">
-        <h2>Login</h2>
-        <label>user:</label>
-        <input type="text" name="usuario" required><br>
-        <label>password:</label>
-        <input type="password" name="contraseña" required><br>
+        <h2>Login Administrador</h2>
+        <label>Email:</label>
+        <input type="email" name="email" required value="admin@gmail.com"><br>
+        <label>Password:</label>
+        <input type="password" name="password" required value="Admin2345"><br>
         <button type="submit">Ingresar</button>
+        <button type="button" onclick="document.getElementById('login').style.display='none'">Cancelar</button>
       </form>
     </div>
       <a href="/turnos" style="text-decoration: none; color: inherit;">

@@ -1,5 +1,3 @@
-
-// controladores
 const home = async (req, res) => {
     res.render('index', { 
         title: 'home'
