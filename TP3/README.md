@@ -83,5 +83,5 @@ Comentarios.
 La conexión a base de datos se empezó trabajando con los modelos y controladores desde la memoria interna, usando datos creados para la prueba y error de los llamados, funciones y rutas. Una vez probado y descartando errores, se comenzó con la conexión a la base de datos real "SQLite", ahí se realizó un traslado de carpetas realizando el llamado correcto de SQL desde models, controllers y routes.
 Una vez resuelto, se agregaron las verificaciones necesarias en config.js y a la ruta this.app.use("/api/v1/turnos", rutaTurnos) en el servidor, sin olvidar que se importaron los modelos y se relacionaron las tablas dentro de la base de datos (db.js).
 
-#Capturas
+# Capturas
 https://drive.google.com/drive/folders/1ppEypY-0e-bF6oqZeipzmtYwFF1cOKVK?usp=sharing
