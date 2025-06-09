@@ -1,7 +1,7 @@
-const pacientesModel = require("./../../models/mock/pacientes.models.js");
-const Paciente = require("./../../models/mock/entities/paciente.entity.js");
+const pacientesModel = require("../../../models/mock/pacientes.models.js");
+const Paciente = require("../../../models/mock/entities/paciente.entity.js");
 const jwt = require("jsonwebtoken");
-const Config = require("../../config/config.js");
+const Config = require("../../../config/config.js");
 
 
 class PacientesController {

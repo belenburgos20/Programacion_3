@@ -1,5 +1,5 @@
-const turnosmodel = require("./../../models/mock/turnos.models.js")
-const Turno = require("../../models/mock/entities/turnos.entity.js")
+const turnosmodel = require("../../../models/mock/turnos.models.js")
+const Turno = require("../../../models/mock/entities/turnos.entity.js")
 
 class TurnosController {
   async list(req, res) {

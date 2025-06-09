@@ -4,7 +4,7 @@ dotenv.config()
 class Config {
   constructor() {
     if (!process.env.SECRET_WORD || !process.env.EXPIRES_IN) {
-      throw new Error("Faltan variables de entorno requeridas: SECRET_WORD o EXPIRES_IN")
+      throw new Error("Faltan variables de entorno requeridas")
     }
 
     this.secretWord = process.env.SECRET_WORD
