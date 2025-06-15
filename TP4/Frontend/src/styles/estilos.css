@@ -1,0 +1,12 @@
+.TarjetaPersona {
+  border: 1px solid #ccc;
+  padding: 16px;
+  margin: 12px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+.ContenedorTarjetas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

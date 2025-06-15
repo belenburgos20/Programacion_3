@@ -1,2 +1,16 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import TraerPersonas from './components/TraerPersonas';
+
+function App() {
+  return (
+    <div className="container">
+      <h1>Listado de Personas</h1>
+      <TraerPersonas />
+    </div>
+  );
+}
+
+export default App;
+
+
+
