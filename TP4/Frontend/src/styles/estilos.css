@@ -1,0 +1,62 @@
+body{
+  font-family: 'Montserrat', sans-serif;
+  background-color:rgba(250, 241, 255, 0.59);
+  color: #000000;
+  line-height: 1.6;
+  margin: 0;
+}
+h1 {
+  text-align: center;
+  color: #133c65;
+  font-size: 30px;
+  letter-spacing: 1px;
+}
+h2 {
+  text-align: center;
+  color: #133c65;
+  margin-bottom: 40px;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.TarjetaPersona {
+  background-color: #dbe0fc;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  padding: 30px;
+}
+.TarjetaPersona:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  scale: 1.1;
+}
+.TarjetaPersona h2{
+  font-size: 30px;
+  margin-bottom: 15px;
+  font-weight: 700;
+  color: #133c65;
+}
+.TarjetaPersona p {
+  font-size: 16px;
+  color: #000000;
+  margin: 10px 0;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin-bottom: 0%;
+}
+.ContenedorTarjetas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 10px auto;
+  padding: 20px;
+}
