@@ -15,7 +15,7 @@ function TraerPersonas() {
 
   return (
     <div>
-      <h2>Lista de Personas</h2>
+      <h2>Integrantes del grupo</h2>
       <ListaTarjetas personas={personas} />
       </div>
   );}
