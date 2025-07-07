@@ -1,7 +1,6 @@
 //vista principal, con los componentes de resumen y movimientos.
 
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Movimientos from "../components/common/movimientos";
 import Resumen from "../components/common/resumen";
@@ -10,7 +9,13 @@ import { obtenerMovimientos } from "../services/api";
 
 const Inicio = () => {
   const [movimientos, setMovimientos] = useState([]);
+  const [filtros, setFiltros] = useState({ categoria: "", fecha: "" });
   const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
 
   useEffect(() => {
     const fetchMovimientos = async () => {
@@ -32,17 +37,27 @@ const Inicio = () => {
     fetchMovimientos();
   }, []);
 
+  const filtrarMovimientos = () => {
+    return movimientos.filter((mov) => {
+      const coincideCategoria =
+        !filtros.categoria || mov.id_categoria === parseInt(filtros.categoria);
+      const coincideFecha = !filtros.fecha || mov.fecha === filtros.fecha;
+      return coincideCategoria && coincideFecha;
+    });
+  };
+
   const handleEliminarMovimiento = (idEliminado) => {
     const nuevaLista = movimientos.filter((mov) => mov.id !== idEliminado);
     setMovimientos(nuevaLista);
   };
 
-  const ingresos = movimientos.filter((m) => m.tipo === "ingreso");
-  const egresos = movimientos.filter((m) => m.tipo === "egreso");
+  const ingresos = filtrarMovimientos().filter((mov) => mov.tipo === "ingreso");
+  const egresos = filtrarMovimientos().filter((mov) => mov.tipo === "egreso");
 
   return (
     <div>
       <h1>Control de gastos - inicio</h1>
+      <button onClick={handleLogout}>Cerrar sesión</button>
 
       <div>
         <button onClick={() => navigate("/carga-ingreso")}>+ Ingreso</button>
@@ -51,12 +66,12 @@ const Inicio = () => {
 
       <div>
         <Movimientos
-          lista={movimientos}
+          lista={filtrarMovimientos()}
           onEliminar={handleEliminarMovimiento}
         />
         <Resumen ingresos={ingresos} egresos={egresos} />
       </div>
-      <Filtros />
+      <Filtros onFiltrar={setFiltros} />
     </div>
   );
 };

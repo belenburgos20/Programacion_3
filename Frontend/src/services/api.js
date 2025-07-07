@@ -20,28 +20,42 @@ export const guardarIngreso = (ingreso) =>
 export const guardarEgreso = (egreso) =>
   axios.post(`${API_URL}/egresos`, egreso, {
     headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}` // Agrega el token de autorización
+      Authorization: `Bearer ${localStorage.getItem('token')}`
     }
   });
 
 export const crearMovimiento = (movimiento) =>
   axios.post(`${API_URL}/movimientos`, movimiento, {
     headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}` // Agrega el token de autorización
+      Authorization: `Bearer ${localStorage.getItem('token')}`
     }
   });
 
 export const obtenerMovimientos = () =>
   axios.get(`${API_URL}/movimientos`, {
     headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}` // Agrega el token de autorización
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    }
+  });
+
+export const obtenerMovimientoPorId = (id) =>
+  axios.get(`${API_URL}/movimientos/${id}`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`
     }
   });
 
 export const eliminarMovimiento = (id) =>
   axios.delete(`${API_URL}/movimientos/${id}`, {
     headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}` // Agrega el token de autorización
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    }
+  });
+
+export const actualizarMovimiento = (id, movimiento) =>
+  axios.put(`${API_URL}/movimientos/${id}`, movimiento, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`
     }
   });
 
