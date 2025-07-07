@@ -18,7 +18,7 @@ class UsuarioController {
     async login(req, res) {
         try {
             const { email, password } = req.body;
-            const usuario = await usuarioModel.login(email, password);
+            const usuario = await usuarioModel.findOne(email, password);
             const token = jwt.sign({ id: usuario.id }, Config.secretWord, { expiresIn: '1h' });
             res.json({ token });
         } catch (error) {

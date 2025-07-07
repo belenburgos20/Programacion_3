@@ -21,7 +21,7 @@ const config = {
     password: process.env.DB_PASSWORD || "app_password",
     database: (process.env.DB_NAME || "app_database") + "_test",
     host: process.env.DB_HOST || "localhost",
-    port: process.env.DB_PORT || 5432,
+    port: process.env.DB_PORT || 5433,
     dialect: "postgres",
     logging: false,
   },

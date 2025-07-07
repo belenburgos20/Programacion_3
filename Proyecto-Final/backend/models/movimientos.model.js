@@ -1,4 +1,4 @@
-const { Movimiento, Categoria } = require("./index")
+const { Movimiento, Categoria } = require("../models/index.js")
 const { Op } = require("sequelize")
 
 const list = async () => {

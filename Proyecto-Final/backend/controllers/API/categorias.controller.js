@@ -1,6 +1,6 @@
 const categoriaModel = require('../../models/categorias.model.js');
 const jwt = require('jsonwebtoken');
-const Config = require('../../config.js');
+const Config = require('../../config/config.js');
 
 class CategoriasController {
     async listarCategorias(req, res) {

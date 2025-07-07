@@ -23,7 +23,7 @@
 |----------|------------|--------|---------|
 | **Frontend** | React 18 | 3000 | Interfaz de usuario |
 | **Backend** | Express + Sequelize | 3001 | API REST |
-| **Database** | PostgreSQL 15 | 5432 | Base de datos principal |
+| **Database** | PostgreSQL 15 | 5433 | Base de datos principal |
 | **Cache** | Redis 7 | 6379 | Cache y sesiones |
 | **Proxy** | Nginx | 80 | Reverse proxy |
 | **pgAdmin** | pgAdmin 4 | 5050 | Administración de BD |

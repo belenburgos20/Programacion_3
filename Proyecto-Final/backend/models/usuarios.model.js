@@ -1,4 +1,4 @@
-const { Usuario } = require("./index")
+const { Usuario } = require("../models/index.js")
 
 const createUsuario = async (nombre, email, password) => {
   try {
@@ -35,6 +35,10 @@ const login = async (email, password) => {
   }
 }
 
+const findOne = (email) => {
+  return Usuario.findOne({ where: { email } })
+}
+
 const obtenerUsuarioPorId = async (id) => {
   try {
     const usuario = await Usuario.findByPk(id)
@@ -53,6 +57,7 @@ module.exports = {
   createUsuario,
   login,
   obtenerUsuarioPorId,
+  findOne
 }
 
 

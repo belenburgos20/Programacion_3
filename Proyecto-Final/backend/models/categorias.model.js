@@ -1,4 +1,4 @@
-const { Categoria } = require("./index")
+const { Categoria } = require("../models/index.js")
 
 const listarCategorias = async () => {
   try {

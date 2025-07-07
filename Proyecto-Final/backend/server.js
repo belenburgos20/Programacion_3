@@ -4,18 +4,18 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 require('dotenv').config();
 
-const { sequelize } = require('./models');
-const routes = require('./routes');
+const { sequelize, Usuario } = require('./models/index.js');
+const routes = require('./routes/index.js');
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 
 // Middleware de seguridad
 app.use(helmet());
 
 // CORS
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
+  origin: process.env.CORS_ORIGIN || 'http://localhost:3002',
   credentials: true
 }));
 
@@ -54,6 +54,24 @@ app.use('*', (req, res) => {
   res.status(404).json({ error: 'Route not found' });
 });
 
+async function testConnection() {
+  try {
+    // Contar usuarios existentes
+    const count = await Usuario.count();
+    console.log(`📊 Total usuarios en la base de datos: ${count}`);
+    
+    // Mostrar los primeros 3 usuarios
+    const usuarios = await Usuario.findAll({ limit: 3 });
+    console.log('👥 Usuarios encontrados:');
+    usuarios.forEach(user => {
+      console.log(`   - ${user.nombre} (${user.email})`);
+    });
+    
+  } catch (error) {
+    console.error('❌ Error conectando a los datos:', error.message);
+  }
+};
+testConnection();
 // Inicializar servidor
 async function startServer() {
   try {
@@ -63,7 +81,7 @@ async function startServer() {
     
     // En desarrollo, sincronizar modelos
     if (process.env.NODE_ENV === 'development') {
-      await sequelize.sync({ alter: false });
+      await sequelize.sync({ alter: true });
       console.log('✅ Database synchronized');
     }
     
