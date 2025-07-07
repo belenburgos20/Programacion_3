@@ -1,9 +1,13 @@
-//muestra la tabla de últimos movimientos.
+//muestra la tabla de con los movimientos.
+// se puede eliminar movimientos y editarlos.
 
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { eliminarMovimiento } from "../../services/api";
 
 const Movimientos = ({ lista, onEliminar }) => {
+  const navigate = useNavigate();
+
   const handleEliminar = async (id) => {
     const confirmacion = window.confirm(
       "¿Estás seguro de eliminar este movimiento?"
@@ -13,7 +17,7 @@ const Movimientos = ({ lista, onEliminar }) => {
     try {
       const token = localStorage.getItem("token");
       await eliminarMovimiento(id, token);
-      onEliminar(id); // actualiza el estado desde el padre
+      onEliminar(id);
     } catch (error) {
       console.error("Error al eliminar movimiento", error);
       alert("No se pudo eliminar");
@@ -31,9 +35,12 @@ const Movimientos = ({ lista, onEliminar }) => {
             <li key={i}>
               <span>{mov.descripcion}</span>
               <span>{mov.total}</span>
-              <span>{mov.categoria}</span>
+              <span>{mov.categoria?.nombre || "Sin categoria"}</span>
               <span>{mov.fecha}</span>
               <button onClick={() => handleEliminar(mov.id)}>🗑️</button>
+              <button onClick={() => navigate(`/editar/${mov.id}`)}>
+                Editar
+              </button>
             </li>
           ))}
         </ul>
@@ -43,5 +50,3 @@ const Movimientos = ({ lista, onEliminar }) => {
 };
 
 export default Movimientos;
-// Este componente recibe una lista de movimientos y los muestra en una lista.
-// Si no hay movimientos, muestra un mensaje indicando que no hay registros.

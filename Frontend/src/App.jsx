@@ -5,6 +5,7 @@ import RegistroUsuario from "./pages/auth/registro";
 import IngresarUsuario from "./pages/auth/ingreso";
 import CargaIngreso from "./pages/cargaIngreso";
 import CargaEgreso from "./pages/cargaEgreso";
+import EditarMovimiento from "./pages/editarMovimiento";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/inicio" element={<Inicio />} />
         <Route path="/cargaIngreso" element={<CargaIngreso />} />
         <Route path="/cargaEgreso" element={<CargaEgreso />} />
+        <Route path="/editar/:id" element={<EditarMovimiento />} />
       </Routes>
     </Router>
   );
