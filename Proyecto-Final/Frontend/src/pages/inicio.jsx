@@ -45,14 +45,15 @@ const Inicio = () => {
       return coincideCategoria && coincideFecha;
     });
   };
+  const movimientosFiltrados = filtrarMovimientos();
 
   const handleEliminarMovimiento = (idEliminado) => {
     const nuevaLista = movimientos.filter((mov) => mov.id !== idEliminado);
     setMovimientos(nuevaLista);
   };
 
-  const ingresos = filtrarMovimientos().filter((mov) => mov.tipo === "ingreso");
-  const egresos = filtrarMovimientos().filter((mov) => mov.tipo === "egreso");
+  const ingresos = movimientosFiltrados.filter((mov) => mov.tipo === "ingreso");
+  const egresos = movimientosFiltrados.filter((mov) => mov.tipo === "egreso");
 
   return (
     <div>
@@ -66,7 +67,7 @@ const Inicio = () => {
 
       <div>
         <Movimientos
-          lista={filtrarMovimientos()}
+          lista={movimientosFiltrados}
           onEliminar={handleEliminarMovimiento}
         />
         <Resumen ingresos={ingresos} egresos={egresos} />
