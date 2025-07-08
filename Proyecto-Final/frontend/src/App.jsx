@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Inicio from "./pages/inicio";
 import RegistroUsuario from "./pages/auth/registro";
 import IngresarUsuario from "./pages/auth/ingreso";
-import CargaIngreso from "./pages/cargaIngreso";
-import CargaEgreso from "./pages/cargaEgreso";
+import CargaIngreso from "./pages/cargaIngresos";
+import CargaEgreso from "./pages/cargaEgresos";
 import EditarMovimiento from "./pages/editarMovimiento";
 
 function App() {
