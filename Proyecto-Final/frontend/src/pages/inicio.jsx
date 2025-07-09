@@ -35,7 +35,7 @@ const Inicio = () => {
     };
 
     fetchMovimientos();
-  }, []);
+  }, [navigate]);
 
   const filtrarMovimientos = () => {
     return movimientos.filter((mov) => {

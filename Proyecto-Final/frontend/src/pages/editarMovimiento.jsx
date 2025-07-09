@@ -28,7 +28,7 @@ const EditarMovimiento = () => {
       }
     };
     fetchData();
-  }, [id]);
+  }, [navigate, id]);
 
   const handleChange = (e) => {
     setMovimiento({

@@ -7,7 +7,7 @@ import { iniciarSesion } from "../../services/api";
 const IngresarUsuario = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [error, setError] = React.useState("");
+  const [, setError] = React.useState("");
 
   const navigate = useNavigate();
 

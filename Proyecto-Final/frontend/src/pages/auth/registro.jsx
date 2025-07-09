@@ -8,7 +8,7 @@ const RegistroUsuario = () => {
   const [nombre, setNombre] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [error, setError] = React.useState("");
+  const [, setError] = React.useState("");
 
   const navigate = useNavigate(); //  para redirigir dsi esta bien
 
@@ -24,7 +24,6 @@ const RegistroUsuario = () => {
       const datos = { nombre, email, password };
       const response = await registrarUsuario(datos);
       console.log("Usuario registrado:", response.data);
-      s;
       navigate("/ingreso"); // se va a la pagina de inicio de sesion si esta bien
     } catch (err) {
       console.error(err);
