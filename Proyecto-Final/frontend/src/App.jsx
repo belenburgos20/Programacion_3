@@ -15,8 +15,8 @@ function App() {
         <Route path="/registro" element={<RegistroUsuario />} />
         <Route path="/ingreso" element={<IngresarUsuario />} />
         <Route path="/inicio" element={<Inicio />} />
-        <Route path="/cargaIngreso" element={<CargaIngreso />} />
-        <Route path="/cargaEgreso" element={<CargaEgreso />} />
+        <Route path="/carga-ingreso" element={<CargaIngreso />} />
+        <Route path="/carga-egreso" element={<CargaEgreso />} />
         <Route path="/editar/:id" element={<EditarMovimiento />} />
       </Routes>
     </Router>

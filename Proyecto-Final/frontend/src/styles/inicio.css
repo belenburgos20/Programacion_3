@@ -1,0 +1,67 @@
+.pagina-inicio {
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f9f9f9;
+  padding: 2rem;
+}
+
+.encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fdecc8;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.btn-cerrar {
+  background-color: #444;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.acciones {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.btn-ingreso,
+.btn-egreso {
+  background-color: #f0c94c;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.contenido-principal {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.movimientos,
+.resumen {
+  width: 48%;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.footer {
+  text-align: right;
+  margin-top: 2rem;
+  color: #999;
+}

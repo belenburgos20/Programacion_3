@@ -1,5 +1,6 @@
 //muestra egresosForm
 import React from "react";
+import "../styles/carga-egreso.css";
 import GastosForm from "../components/common/egresosForm";
 import { useNavigate } from "react-router-dom";
 import { guardarEgreso } from "../services/api";
@@ -25,10 +26,16 @@ const CargaEgreso = () => {
   };
 
   return (
-    <div>
-      <h1>Nuevo Egreso</h1>
-      <GastosForm onAgregar={handleAgregarEgreso} />
-      <button onClick={() => navigate("/inicio")}>← Volver al inicio</button>
+    <div className="pagina-egreso">
+      <h1 className="titulo-egreso">Nuevo Egreso</h1>
+
+      <div className="formulario-egreso">
+        <GastosForm onAgregar={handleAgregarEgreso} />
+      </div>
+
+      <button className="btn-volver" onClick={() => navigate("/inicio")}>
+        ← Volver al inicio
+      </button>
     </div>
   );
 };

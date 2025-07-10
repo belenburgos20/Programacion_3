@@ -1,8 +1,9 @@
 //muestra ingresosForm
 
 import React from "react";
+import "../styles/carga-ingreso.css";
 import { useNavigate } from "react-router-dom";
-import IngresoForm from "../components/common/ingresosForm";
+import IngresosForm from "../components/common/ingresosForm";
 import { guardarIngreso } from "../services/api";
 
 const CargaIngreso = () => {
@@ -26,10 +27,12 @@ const CargaIngreso = () => {
   };
 
   return (
-    <div>
-      <h1>Nuevo Ingreso</h1>
-      <IngresoForm onAgregar={handleAgregarIngreso} />
-      <button onClick={() => navigate("/inicio")}>← Volver al inicio</button>
+    <div className="pagina-ingreso">
+      <h1 className="titulo-ingreso">Nuevo Ingreso</h1>
+      <IngresosForm onAgregar={handleAgregarIngreso} />
+      <button className="btn-volver" onClick={() => navigate("/inicio")}>
+        ← Volver al inicio
+      </button>
     </div>
   );
 };
