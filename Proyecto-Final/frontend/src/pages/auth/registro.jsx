@@ -65,7 +65,7 @@ const RegistroUsuario = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">Crear cueta</button>
+        <button type="submit">Crear cuenta</button>
       </form>
     </div>
   );

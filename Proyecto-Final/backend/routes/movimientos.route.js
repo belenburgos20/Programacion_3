@@ -6,7 +6,7 @@ const { verifyTokenMiddleware } = require('../middleware/verifyToken.middleware.
 rutaMovimientos.use(verifyTokenMiddleware);
 
 rutaMovimientos.get('/', movimientosController.listarMovimientos);
-rutaMovimientos.post('/', movimientosController.crearMovimiento);
+rutaMovimientos.post('/movimientos', movimientosController.crearMovimiento);
 rutaMovimientos.put('/:id', movimientosController.actualizarMovimiento);
 rutaMovimientos.delete('/:id', movimientosController.eliminarMovimiento);
 rutaMovimientos.get('/:id', movimientosController.obtenerMovimientoPorId);

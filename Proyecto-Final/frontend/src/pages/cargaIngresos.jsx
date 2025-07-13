@@ -10,14 +10,12 @@ const CargaIngreso = () => {
   const navigate = useNavigate();
 
   const handleAgregarIngreso = async (nuevoIngreso) => {
+    if (!nuevoIngreso.descripcion || !nuevoIngreso.total || !nuevoIngreso.id_categoria || !nuevoIngreso.fecha) {
+      alert("Por favor, completa todos los campos.");
+      return;
+    }
     try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        alert("No estás logueado");
-        return;
-      }
-
-      await guardarIngreso(nuevoIngreso, token);
+      await guardarIngreso(nuevoIngreso);
       alert("Ingreso guardado correctamente");
       navigate("/inicio");
     } catch (error) {

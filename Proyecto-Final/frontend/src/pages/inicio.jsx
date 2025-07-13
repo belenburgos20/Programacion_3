@@ -15,7 +15,7 @@ const Inicio = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    navigate("/login");
+    navigate("/");
   };
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const Inicio = () => {
       try {
         const token = localStorage.getItem("token");
         if (!token) {
-          navigate("/login"); //  si no está logueado
+          navigate("/"); //  si no está logueado
           return;
         }
 
@@ -82,7 +82,6 @@ const Inicio = () => {
 
       <main className="contenido-principal">
         <section className="movimientos">
-          <h2>Últimos movimientos</h2>
           <Movimientos
             lista={movimientosFiltrados}
             onEliminar={handleEliminarMovimiento}
@@ -91,7 +90,6 @@ const Inicio = () => {
         </section>
 
         <section className="resumen">
-          <h2>Resumen</h2>
           <Resumen ingresos={ingresos} egresos={egresos} />
         </section>
       </main>

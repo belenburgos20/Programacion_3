@@ -22,14 +22,16 @@ const EditarMovimiento = () => {
         setMovimiento(mov.data);
         setCategorias(cats.data);
       } catch (error) {
-        console.error("Error al cargar movoimiento", error);
+        console.error("Error al cargar movimiento", error);
         alert("Error al cargar el movimiento");
         navigate("/inicio");
       }
     };
     fetchData();
   }, [navigate, id]);
-
+  if (!movimiento) {
+    return <p>No se encontró el movimiento</p>;
+  }
   const handleChange = (e) => {
     setMovimiento({
       ...movimiento,

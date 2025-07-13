@@ -47,7 +47,7 @@ const Filtros = ({ onFiltrar }) => {
         value={fecha}
         onChange={(e) => setFecha(e.target.value)}
       />
-      <button onClick={handleFiltrar}>filtros</button>
+      <button onClick={handleFiltrar}>Aplicar filtros</button>
       <button onClick={handleLimpiar}>Limpiar filtros </button>
     </div>
   );

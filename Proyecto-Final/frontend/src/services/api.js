@@ -10,15 +10,15 @@ export const registrarUsuario = (datos) =>
 export const iniciarSesion = (datos) =>
   axios.post(`${API_URL}/login`, datos);
 
-export const guardarIngreso = (ingreso) =>
-  axios.post(`${API_URL}/ingresos`, ingreso, {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}` // Agrega el token de autorización
-    }
-  });
-
-export const guardarEgreso = (egreso) =>
-  axios.post(`${API_URL}/egresos`, egreso, {
+export const guardarIngreso = async (nuevoIngreso) => {
+    const response = await axios.post(`${API_URL}/movimientos`, nuevoIngreso, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    });
+};
+export const guardarEgreso = (nuevoGasto) =>
+  axios.post(`${API_URL}/movimientos`, nuevoGasto, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`
     }
@@ -53,7 +53,7 @@ export const eliminarMovimiento = (id) =>
   });
 
 export const actualizarMovimiento = (id, movimiento) =>
-  axios.put(`${API_URL}/movimientos/${id}`, movimiento, {
+  axios.put(`${API_URL}/editar/${id}`, movimiento, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`
     }

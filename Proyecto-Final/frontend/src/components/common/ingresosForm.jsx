@@ -38,7 +38,7 @@ const IngresoForm = ({ onAgregar }) => {
     };
 
     onAgregar(nuevoIngreso);
-
+    
     setDescripcion("");
     setMonto("");
     setCategoria("");

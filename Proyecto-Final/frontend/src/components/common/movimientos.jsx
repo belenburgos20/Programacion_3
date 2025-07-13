@@ -4,10 +4,21 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { eliminarMovimiento } from "../../services/api";
+import { actualizarMovimiento } from "../../services/api";
 
 const Movimientos = ({ lista, onEliminar }) => {
   const navigate = useNavigate();
+  if (!lista || lista.length === 0) {
+    return <p>No hay movimientos registrados todavía</p>;
+  }
+  const handleEditar = async (id) => {
+    const confirmacion = window.confirm(
+      "¿Estás seguro de editar este movimiento?"
+    );
+    if (!confirmacion) return;
 
+    navigate(`/editar/${id}`);
+  };
   const handleEliminar = async (id) => {
     const confirmacion = window.confirm(
       "¿Estás seguro de eliminar este movimiento?"
@@ -38,7 +49,7 @@ const Movimientos = ({ lista, onEliminar }) => {
               <span>{mov.categoria?.nombre || "Sin categoria"}</span>
               <span>{mov.fecha}</span>
               <button onClick={() => handleEliminar(mov.id)}>🗑️</button>
-              <button onClick={() => navigate(`/editar/${mov.id}`)}>
+              <button onClick={() => handleEditar(mov.id)}>
                 Editar
               </button>
             </li>
@@ -47,6 +58,6 @@ const Movimientos = ({ lista, onEliminar }) => {
       )}
     </div>
   );
-};
+  };
 
 export default Movimientos;

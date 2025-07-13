@@ -10,13 +10,7 @@ const CargaEgreso = () => {
 
   const handleAgregarEgreso = async (nuevoGasto) => {
     try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        alert("No estás logueado");
-        return;
-      }
-
-      await guardarEgreso(nuevoGasto, token);
+      await guardarEgreso(nuevoGasto);
       alert("Egreso guardado correctamente");
       navigate("/inicio");
     } catch (error) {
