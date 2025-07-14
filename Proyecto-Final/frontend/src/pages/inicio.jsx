@@ -1,60 +1,63 @@
-//vista principal, con los componentes de resumen y movimientos.
+"use client"
 
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import "../styles/inicio.css";
-import Movimientos from "../components/common/movimientos";
-import Resumen from "../components/common/resumen";
-import Filtros from "../components/common/filtros";
-import { obtenerMovimientos } from "../services/api";
+import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import "../styles/inicio.css"
+import Movimientos from "../components/common/movimientos"
+import Resumen from "../components/common/resumen"
+import Filtros from "../components/common/filtros"
+import { obtenerMovimientos } from "../services/api"
 
 const Inicio = () => {
-  const [movimientos, setMovimientos] = useState([]);
-  const [filtros, setFiltros] = useState({ categoria: "", fecha: "" });
-  const navigate = useNavigate();
+  const [movimientos, setMovimientos] = useState([])
+  const [filtros, setFiltros] = useState({ categoria: "", fecha: "" })
+  const navigate = useNavigate()
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/");
-  };
+    localStorage.removeItem("token")
+    navigate("/")
+  }
+
+  const fetchMovimientos = async () => {
+    try {
+      const token = localStorage.getItem("token")
+      if (!token) {
+        navigate("/") 
+        return
+      }
+
+      const response = await obtenerMovimientos(token)
+      setMovimientos(response.data) // arreglo de movimientos
+    } catch (error) {
+      console.error("Error al cargar movimientos", error)
+      alert("Error al obtener los movimientos")
+    }
+  }
 
   useEffect(() => {
-    const fetchMovimientos = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        if (!token) {
-          navigate("/"); //  si no está logueado
-          return;
-        }
-
-        const response = await obtenerMovimientos(token);
-        setMovimientos(response.data); // arreglo de movimientos
-      } catch (error) {
-        console.error("Error al cargar movimientos", error);
-        alert("Error al obtener los movimientos");
-      }
-    };
-
-    fetchMovimientos();
-  }, [navigate]);
+    fetchMovimientos()
+  }, [navigate])
 
   const filtrarMovimientos = () => {
     return movimientos.filter((mov) => {
-      const coincideCategoria =
-        !filtros.categoria || mov.id_categoria === parseInt(filtros.categoria);
-      const coincideFecha = !filtros.fecha || mov.fecha === filtros.fecha;
-      return coincideCategoria && coincideFecha;
-    });
-  };
-  const movimientosFiltrados = filtrarMovimientos();
+      const coincideCategoria = !filtros.categoria || mov.id_categoria === Number.parseInt(filtros.categoria)
+      const coincideFecha = !filtros.fecha || mov.fecha === filtros.fecha
+      return coincideCategoria && coincideFecha
+    })
+  }
+  const movimientosFiltrados = filtrarMovimientos()
 
   const handleEliminarMovimiento = (idEliminado) => {
-    const nuevaLista = movimientos.filter((mov) => mov.id !== idEliminado);
-    setMovimientos(nuevaLista);
-  };
+    const nuevaLista = movimientos.filter((mov) => mov.id !== idEliminado)
+    setMovimientos(nuevaLista)
+  }
 
-  const ingresos = movimientosFiltrados.filter((mov) => mov.tipo === "ingreso");
-  const egresos = movimientosFiltrados.filter((mov) => mov.tipo === "egreso");
+  const actualizarMovimientos = () => {
+    fetchMovimientos()
+  }
+
+  const ingresos = movimientosFiltrados.filter((mov) => mov.tipo === "ingreso")
+  const egresos = movimientosFiltrados.filter((mov) => mov.tipo === "egreso")
 
   return (
     <div className="pagina-inicio">
@@ -66,26 +69,17 @@ const Inicio = () => {
       </header>
 
       <section className="acciones">
-        <button
-          className="btn-ingreso"
-          onClick={() => navigate("/carga-ingreso")}
-        >
-          Carga de ingresos
+        <button className="btn-ingreso" onClick={() => navigate("/carga-ingreso")}>
+          + Nuevo Ingreso
         </button>
-        <button
-          className="btn-egreso"
-          onClick={() => navigate("/carga-egreso")}
-        >
-          Ingreso de gastos
+        <button className="btn-egreso" onClick={() => navigate("/carga-egreso")}>
+          - Nuevo Egreso
         </button>
       </section>
 
       <main className="contenido-principal">
         <section className="movimientos">
-          <Movimientos
-            lista={movimientosFiltrados}
-            onEliminar={handleEliminarMovimiento}
-          />
+          <Movimientos lista={movimientosFiltrados} onEliminar={handleEliminarMovimiento} />
           <Filtros onFiltrar={setFiltros} />
         </section>
 
@@ -96,7 +90,7 @@ const Inicio = () => {
 
       <footer className="footer">Technova 2025</footer>
     </div>
-  );
-};
+  )
+}
 
-export default Inicio;
+export default Inicio

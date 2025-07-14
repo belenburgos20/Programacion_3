@@ -2,6 +2,7 @@
   font-family: "Segoe UI", sans-serif;
   background-color: #f9f9f9;
   padding: 2rem;
+  min-height: 100vh;
 }
 
 .encabezado {
@@ -17,6 +18,7 @@
 h1 {
   margin: 0;
   font-size: 2rem;
+  color: #333;
 }
 
 .btn-cerrar {
@@ -26,6 +28,11 @@ h1 {
   padding: 0.5rem 1rem;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-cerrar:hover {
+  background-color: #222;
 }
 
 .acciones {
@@ -37,12 +44,34 @@ h1 {
 
 .btn-ingreso,
 .btn-egreso {
-  background-color: #f0c94c;
   border: none;
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-ingreso {
+  background-color: #4caf50;
+  color: white;
+}
+
+.btn-ingreso:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+.btn-egreso {
+  background-color: #f44336;
+  color: white;
+}
+
+.btn-egreso:hover {
+  background-color: #da190b;
+  transform: translateY(-2px);
 }
 
 .contenido-principal {
@@ -53,15 +82,164 @@ h1 {
 
 .movimientos,
 .resumen {
-  width: 48%;
   background-color: white;
-  padding: 1rem;
+  padding: 1.5rem;
   border-radius: 8px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.movimientos {
+  width: 60%;
+}
+
+.resumen {
+  width: 38%;
+}
+
+/* Estilos para el resumen */
+.resumen-container h2 {
+  color: #333;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.resumen-totales {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.resumen-item {
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  border-left: 4px solid;
+}
+
+.resumen-item.ingreso {
+  background-color: #e8f5e8;
+  border-left-color: #4caf50;
+}
+
+.resumen-item.egreso {
+  background-color: #ffeaea;
+  border-left-color: #f44336;
+}
+
+.resumen-item.balance {
+  background-color: #e3f2fd;
+  border-left-color: #2196f3;
+}
+
+.resumen-item h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  color: #555;
+}
+
+.monto {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.monto.positivo {
+  color: #4caf50;
+}
+
+.monto.negativo {
+  color: #f44336;
+}
+
+.resumen-item small {
+  color: #777;
+  font-size: 0.8rem;
+}
+
+.desglose-categorias {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.desglose-categorias h4 {
+  margin: 0 0 1rem 0;
+  color: #555;
+  font-size: 1rem;
+}
+
+.lista-categorias {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.categoria-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.categoria-item:last-child {
+  border-bottom: none;
+}
+
+.categoria-nombre {
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.categoria-monto {
+  color: #f44336;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.sin-datos {
+  text-align: center;
+  padding: 2rem;
+  color: #777;
+}
+
+.sin-datos p {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+}
+
+.sin-datos small {
+  font-size: 0.8rem;
+  color: #999;
 }
 
 .footer {
   text-align: right;
   margin-top: 2rem;
   color: #999;
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contenido-principal {
+    flex-direction: column;
+  }
+
+  .movimientos,
+  .resumen {
+    width: 100%;
+  }
+
+  .acciones {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-ingreso,
+  .btn-egreso {
+    width: 200px;
+  }
 }
