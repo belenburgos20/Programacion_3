@@ -606,10 +606,11 @@ docker system prune -a --volumes
 - **pgAdmin**: https://www.pgadmin.org/docs/
 
 ### Comunidades y Ayuda
-- **Stack Overflow** para problemas específicos
-- **GitHub Issues** de cada proyecto
-- **Discord/Slack** de las comunidades
-- **Reddit** r/docker, r/reactjs, r/node
+
+- **Stack Overflow** – Ideal para errores puntuales. Pegá el mensaje de error tal como aparece, explicá lo que intentaste, y seguro alguien te da una mano.
+- **GitHub** – Revisá si el error está documentado en el repositorio oficial de la tecnología que se este usando (React, Express, Sequelize, etc.).
+- **Discord** – Hay grupos muy activos donde se puede chatear en tiempo real con gente que trabaja con las mismas herramientas.
+- **Reddit** – Subreddits como [r/docker](https://reddit.com/r/docker), [r/reactjs](https://reddit.com/r/reactjs), y [r/node](https://reddit.com/r/node) son lugares donde otros probablemente ya pasaron por lo mismo.
 
 ---
 👥 Autores
