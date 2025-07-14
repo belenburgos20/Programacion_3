@@ -31,7 +31,7 @@
 ---
 Clonar el repositorio:
 ```bash
-git clone --branch dev --single-branch https://github.com/belenburgos20/Programaci-n-3
+git clone --branch main --single-branch https://github.com/belenburgos20/Programaci-n-3
 cd Proyecto-Final
 ```
 ---
