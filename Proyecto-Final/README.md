@@ -29,6 +29,12 @@
 | **pgAdmin** | pgAdmin 4 | 5050 | Administración de BD |
 
 ---
+Clonar el repositorio:
+```bash
+git clone --branch dev --single-branch https://github.com/belenburgos20/Programaci-n-3
+cd Proyecto-Final
+```
+---
 
 ## 🏗️ Construcción Inicial
 
@@ -147,6 +153,13 @@ docker-compose build
 # Inicializar base de datos y servicios
 docker-compose up -d
 ```
+---
+
+## 📖 Descripción breve del Proyecto
+
+El sistema permite la interacción entre un cliente web y una API RESTful, gestionando datos almacenados en una base de datos PostgreSQL. Redis se utiliza como sistema de cacheo para mejorar el rendimiento en ciertas consultas frecuentes.
+
+La aplicación está dockerizada completamente, lo que facilita su despliegue en cualquier entorno.
 
 ---
 
@@ -202,6 +215,8 @@ docker-compose down -v
 
 ### 🔴 Error: "Cannot find module './models'"
 **Problema:** Faltan archivos básicos del backend
+
+**📌 Descripción:** Al iniciar el backend, Node.js lanza este error porque no encuentra el archivo o carpeta `models`, necesario para la conexión con la base de datos.
 ```bash
 # Solución
 mkdir -p backend/models backend/routes
@@ -210,6 +225,8 @@ mkdir -p backend/models backend/routes
 
 ### 🔴 Error: "Could not find index.html"
 **Problema:** React no encuentra archivos básicos
+
+📌 Descripción: El contenedor de React falla porque no encuentra el archivo index.html, usualmente ubicado en frontend/public.
 ```bash
 # Solución
 mkdir -p frontend/public frontend/src
@@ -218,6 +235,8 @@ mkdir -p frontend/public frontend/src
 
 ### 🔴 Error: "psql: Is a directory"
 **Problema:** `init.sql` es carpeta en lugar de archivo
+
+📌 Descripción: Al intentar montar o ejecutar un archivo init.sql, se detecta una carpeta con ese nombre, lo que provoca un conflicto en PostgreSQL.
 ```bash
 # Solución
 rm -rf database/init.sql
@@ -227,6 +246,8 @@ touch database/init.sql
 
 ### 🔴 Error de credenciales Docker Desktop
 **Problema:** `error getting credentials - err: exec: "docker-credential-desktop.exe": executable file not found`
+
+📌 Descripción: Docker intenta acceder a credenciales con un ejecutable que no existe o fue mal instalado. Suele pasar en configuraciones rotas de Docker Desktop.
 ```bash
 # Solución: Reset de configuración Docker
 # Hacer backup de la configuración actual
@@ -241,6 +262,8 @@ docker compose build
 
 ### 🔴 Puerto ya en uso
 **Problema:** Servicios corriendo en puertos ocupados
+
+📌 Descripción: Otro proceso en el sistema está usando el mismo puerto, bloqueando el contenedor.
 ```bash
 # Verificar puertos ocupados
 netstat -4 -tln | grep :3000
@@ -252,6 +275,8 @@ ports:
 
 ### 🔴 Error de permisos en Docker
 **Problema:** Permisos de archivos en contenedores
+
+📌 Descripción: Archivos creados por los contenedores pueden tener permisos root, lo que genera errores al accederlos desde el host.
 ```bash
 # Solución
 sudo chown -R $USER:$USER .
@@ -260,6 +285,8 @@ chmod -R 755 .
 
 ### 🔴 Hot reload no funciona
 **Problema:** Cambios no se detectan automáticamente
+
+📌 Descripción: El frontend o backend no se reinicia automáticamente al detectar cambios.
 ```bash
 # Verificar variables de entorno
 CHOKIDAR_USEPOLLING=true
@@ -271,6 +298,8 @@ docker-compose restart frontend
 
 ### 🔴 Base de datos no conecta
 **Problema:** Backend no puede conectar a PostgreSQL
+
+📌 Descripción: El backend Express no puede establecer conexión con PostgreSQL, generalmente por problemas de timing, red o variables mal configuradas.
 ```bash
 # Verificar salud de la base de datos
 docker-compose ps database
@@ -581,5 +610,18 @@ docker system prune -a --volumes
 - **GitHub Issues** de cada proyecto
 - **Discord/Slack** de las comunidades
 - **Reddit** r/docker, r/reactjs, r/node
+
+---
+👥 Autores
+
+Ian Franco Ibañez
+
+Belén Burgos
+
+Noelia Hubert
+
+Luciano Guardese
+
+Estudiantes de la Tecnicatura Universitaria en Programación – UTN
 
 ¡Sistema completo y listo para desarrollo! 🚀
