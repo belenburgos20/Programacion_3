@@ -15,17 +15,12 @@ class MovimientoController {
     try {
       const { tipo, fecha, id_categoria, descripcion, total } = req.body
 
-      // Validar que el tipo sea válido
       if (!tipo || !["ingreso", "egreso"].includes(tipo)) {
         return res.status(400).json({ error: 'Tipo de movimiento inválido. Debe ser "ingreso" o "egreso"' })
       }
-
-      // Validar campos requeridos
       if (!fecha || !id_categoria || !descripcion || !total) {
         return res.status(400).json({ error: "Todos los campos son requeridos" })
       }
-
-      // Validar que el total sea positivo
       if (Number.parseFloat(total) <= 0) {
         return res.status(400).json({ error: "El total debe ser mayor a 0" })
       }

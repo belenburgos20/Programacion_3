@@ -11,18 +11,18 @@ const CargaEgreso = () => {
     try {
       const response = await guardarEgreso(nuevoGasto);
       console.log("Egreso guardado:", response.data);
-      alert("✅ Egreso guardado correctamente");
+      alert("Egreso guardado correctamente");
       navigate("/inicio");
     } catch (error) {
       console.error("Error completo:", error);
       if (error.response) {
         alert(
-          `❌ Error: ${
+          `Error: ${
             error.response.data.error || "Error al guardar el egreso"
           }`
         );
       } else {
-        alert("❌ Error de conexión al guardar el egreso");
+        alert("Error de conexión al guardar el egreso");
       }
     }
   };

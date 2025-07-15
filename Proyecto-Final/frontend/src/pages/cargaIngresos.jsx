@@ -16,14 +16,14 @@ const CargaIngreso = () => {
     try {
       const response = await guardarIngreso(nuevoIngreso)
       console.log("Ingreso guardado:", response.data)
-      alert("✅ Ingreso guardado correctamente")
+      alert("Ingreso guardado correctamente")
       navigate("/inicio")
     } catch (error) {
       console.error("Error completo:", error)
       if (error.response) {
-        alert(`❌ Error: ${error.response.data.error || "Error al guardar el ingreso"}`)
+        alert(`Error: ${error.response.data.error || "Error al guardar el ingreso"}`)
       } else {
-        alert("❌ Error de conexión al guardar el ingreso")
+        alert("Error de conexión al guardar el ingreso")
       }
     }
   }
