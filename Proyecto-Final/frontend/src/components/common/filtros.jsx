@@ -31,24 +31,33 @@ const Filtros = ({ onFiltrar }) => {
     onFiltrar({ categoria: "", fecha: "" });
   };
   return (
-    <div>
-      <label>Categoria:</label>
-      <select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
-        <option value="">Todas</option>
-        {categorias.map((cat) => (
-          <option key={cat.id} value={cat.id}>
-            {cat.nombre}
-          </option>
-        ))}
-      </select>
-      <label>Fecha:</label>
-      <input
-        type="date"
-        value={fecha}
-        onChange={(e) => setFecha(e.target.value)}
-      />
-      <button onClick={handleFiltrar}>Aplicar filtros</button>
-      <button onClick={handleLimpiar}>Limpiar filtros </button>
+    <div className="filtros-form">
+      <label>
+        Categoria:
+        <select
+          value={categoria}
+          onChange={(e) => setCategoria(e.target.value)}
+        >
+          <option value="">Todas</option>
+          {categorias.map((cat) => (
+            <option key={cat.id} value={cat.id}>
+              {cat.nombre}
+            </option>
+          ))}
+        </select>
+      </label>
+      <label>
+        Fecha:
+        <input
+          type="date"
+          value={fecha}
+          onChange={(e) => setFecha(e.target.value)}
+        />
+      </label>
+      <div className="filtros-botones">
+        <button onClick={handleFiltrar}>Aplicar filtros</button>
+        <button onClick={handleLimpiar}>Limpiar filtros </button>
+      </div>
     </div>
   );
 };

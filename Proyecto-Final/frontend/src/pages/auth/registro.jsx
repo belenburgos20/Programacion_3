@@ -1,8 +1,9 @@
 //formulario de registro.
 
 import React from "react";
-import { registrarUsuario } from "../../services/api"; // Importa la función de registro desde tu servicio API
-import { useNavigate } from "react-router-dom"; // Para redirigir al usuario después del registro
+import { registrarUsuario } from "../../services/api";
+import { useNavigate } from "react-router-dom";
+import "../../styles/registro.css";
 
 const RegistroUsuario = () => {
   const [nombre, setNombre] = React.useState("");

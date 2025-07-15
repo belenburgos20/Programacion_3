@@ -3,6 +3,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { iniciarSesion } from "../../services/api";
+import "../../styles/ingreso.css";
 
 const IngresarUsuario = () => {
   const [email, setEmail] = React.useState("");

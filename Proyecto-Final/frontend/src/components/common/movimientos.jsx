@@ -36,28 +36,35 @@ const Movimientos = ({ lista, onEliminar }) => {
   };
 
   return (
-    <div>
-      <h2>Ultimos movimientos</h2>
-      {lista.length === 0 ? (
-        <p>No hay movimientos registrados todavia</p>
-      ) : (
-        <ul>
+    <div className="tabla-movimientos">
+      <h2 className="titulo-seccion">Últimos movimientos</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Descripción</th>
+            <th>Monto</th>
+            <th>Categoría</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
           {lista.map((mov, i) => (
-            <li key={i}>
-              <span>{mov.descripcion}</span>
-              <span>{mov.total}</span>
-              <span>{mov.categoria?.nombre || "Sin categoria"}</span>
-              <span>{mov.fecha}</span>
-              <button onClick={() => handleEliminar(mov.id)}>🗑️</button>
-              <button onClick={() => handleEditar(mov.id)}>
-                Editar
-              </button>
-            </li>
+            <tr key={i}>
+              <td>{mov.descripcion}</td>
+              <td>${mov.total}</td>
+              <td>{mov.categoria?.nombre || "Sin categoría"}</td>
+              <td>{mov.fecha}</td>
+              <td>
+                <button onClick={() => handleEditar(mov.id)}>✏️</button>{" "}
+                <button onClick={() => handleEliminar(mov.id)}>🗑️</button>
+              </td>
+            </tr>
           ))}
-        </ul>
-      )}
+        </tbody>
+      </table>
     </div>
   );
-  };
+};
 
 export default Movimientos;

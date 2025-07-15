@@ -88,15 +88,104 @@ h1 {
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.movimientos {
-  width: 60%;
+.tabla-movimientos {
+  margin-bottom: 2rem;
+}
+
+.titulo-seccion {
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+.tabla-movimientos table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.tabla-movimientos th,
+.tabla-movimientos td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.tabla-movimientos th {
+  background-color: #f4f4f4;
+  font-weight: 600;
+  color: #333;
+}
+
+.tabla-movimientos td {
+  color: #555;
+}
+
+.tabla-movimientos button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  margin-right: 8px;
+}
+
+.tabla-movimientos button:hover {
+  transform: scale(1.1);
+}
+
+.filtros-container {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.filtros-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+}
+
+.filtros-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.filtros-form select,
+.filtros-form input[type="date"] {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-top: 0.25rem;
+}
+
+.filtros-botones {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.filtros-botones button {
+  padding: 0.5rem 1rem;
+  background-color: #5b7cfa;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.filtros-botones button:hover {
+  background-color: #3956d8;
 }
 
 .resumen {
   width: 38%;
 }
 
-/* Estilos para el resumen */
 .resumen-container h2 {
   color: #333;
   margin-bottom: 1.5rem;
