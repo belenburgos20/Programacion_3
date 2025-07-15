@@ -4,6 +4,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { iniciarSesion } from "../../services/api";
 import "../../styles/ingreso.css";
+import RegistroUsuario from "./registro";
 
 const IngresarUsuario = () => {
   const [email, setEmail] = React.useState("");
@@ -29,23 +30,7 @@ const IngresarUsuario = () => {
       navigate("/inicio");
     } catch (err) {
       console.error(err);
-      if (err.response) {
-        const status = err.response.status;
-        const mensaje = err.response.data?.error || "Error al iniciar sesión";
-
-        if (status === 404) {
-          setError(mensaje);
-          setTimeout(() => {
-            navigate("/registro");
-          }, 2000);
-        } else if (status === 401) {
-          setError(mensaje);
-        } else {
-          setError("Error no manejable");
-        }
-      } else {
-        setError("No se pudo conectar con el servidor");
-      }
+      setError("Error al iniciar sesión");
     }
   };
 
@@ -73,6 +58,14 @@ const IngresarUsuario = () => {
           required
         />
         <button type="submit">Entrar</button>
+      </form>
+      <form onSubmit={RegistroUsuario.handleSubmit}>
+        <p>
+          ¿No tenes cuenta?{" "}
+          <button type="submit">
+            <a href="/registro">Crear cuenta</a>
+          </button>
+        </p>
       </form>
     </div>
   );

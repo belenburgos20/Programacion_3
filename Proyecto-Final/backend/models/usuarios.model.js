@@ -20,14 +20,13 @@ const login = async (email, password) => {
   try {
     const usuario = await Usuario.findOne({ where: { email } })
     if (!usuario) {
-      const error = new Error("Usuario no registrado");
-      throw error;
+      throw new Error("usuario no registrado")
     }
 
     const isValidPassword = await usuario.validPassword(password)
     if (!isValidPassword) {
-      const error = new Error("Contraseña incorrecta");
-      throw error;
+      throw Error("Contraseña incorrecta");
+
     }
 
     const { password: _, ...usuarioSinPassword } = usuario.toJSON()
@@ -45,7 +44,7 @@ const obtenerUsuarioPorId = async (id) => {
   try {
     const usuario = await Usuario.findByPk(id)
     if (!usuario) {
-      throw new Error("Usuario no encontrado")
+      throw new Error("Usuario no registrado")
     }
 
     const { password: _, ...usuarioSinPassword } = usuario.toJSON()

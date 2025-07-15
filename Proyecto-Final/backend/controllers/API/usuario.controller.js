@@ -23,16 +23,7 @@ class UsuarioController {
             res.json({ token });
         } catch (error) {
             console.error(error.message);
-
-            if (error.message === "Usuario no registrado") {
-                return res.status(404).json({ error: "Este correo no está registrado" });
-            }
-
-            if (error.message === "Contraseña incorrecta") {
-                return res.status(401).json({ error: "Contraseña incorrecta" });
-            }
-
-            res.status(500).json({ error: "Error interno del servidor" });
+            res.status(401).json({ error: "Credenciales inválidas" });
         }
     }
 }
