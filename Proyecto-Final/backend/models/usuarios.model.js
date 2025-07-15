@@ -20,12 +20,14 @@ const login = async (email, password) => {
   try {
     const usuario = await Usuario.findOne({ where: { email } })
     if (!usuario) {
-      throw new Error("Usuario no encontrado")
+      const error = new Error("Usuario no registrado");
+      throw error;
     }
 
     const isValidPassword = await usuario.validPassword(password)
     if (!isValidPassword) {
-      throw new Error("Contraseña incorrecta")
+      const error = new Error("Contraseña incorrecta");
+      throw error;
     }
 
     const { password: _, ...usuarioSinPassword } = usuario.toJSON()

@@ -8,16 +8,13 @@ import "../../styles/ingreso.css";
 const IngresarUsuario = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [, setError] = React.useState("");
+  const [error, setError] = React.useState("");
 
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
-
-    setEmail("");
-    setPassword("");
 
     try {
       const datos = { email, password };
@@ -26,16 +23,38 @@ const IngresarUsuario = () => {
       localStorage.setItem("token", response.data.token);
       console.log("Token guardado", response.data.token);
 
+      setEmail("");
+      setPassword("");
+
       navigate("/inicio");
     } catch (err) {
       console.error(err);
-      setError("correo o contraseña incorrectos");
+      if (err.response) {
+        const status = err.response.status;
+        const mensaje = err.response.data?.error || "Error al iniciar sesión";
+
+        if (status === 404) {
+          setError(mensaje);
+          setTimeout(() => {
+            navigate("/registro");
+          }, 2000);
+        } else if (status === 401) {
+          setError(mensaje);
+        } else {
+          setError("Error no manejable");
+        }
+      } else {
+        setError("No se pudo conectar con el servidor");
+      }
     }
   };
 
   return (
     <div className="container">
       <h2>Ingresar</h2>
+
+      {error && <p className="error">{error}</p>}
+
       <form onSubmit={handleLogin}>
         <label htmlFor="email">Correo electrónico</label>
         <input
