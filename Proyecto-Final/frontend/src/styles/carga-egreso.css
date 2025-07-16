@@ -59,8 +59,3 @@
   transition: all 0.3s ease;
   font-size: 1rem;
 }
-
-.btn-volver:hover {
-  background-color: #dddddd;
-  transform: translateY(-1px);
-}

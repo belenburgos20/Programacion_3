@@ -37,38 +37,49 @@ const RegistroUsuario = () => {
   };
 
   return (
-    <div className="container">
-      <h2>Regustrarse</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="nombre">Nombre</label>
-        <input
-          type="text"
-          id="nombre"
-          name="nombre"
-          value={nombre}
-          onChange={(e) => setNombre(e.target.value)}
-          required
-        />
+    <>
+      <div className="presentacion-app">
+        <h1>Control de Gastos</h1>
+        <p>Gestiona tus gastos y mantenete organizado</p>
+      </div>
 
-        <label htmlFor="email">Correo electrónico</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <label htmlFor="password">Contraseña</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Crear cuenta</button>
-      </form>
-    </div>
+      <div className="pagina-registro">
+        <div className="header-registro">
+          <h2 className="titulo-registro">Crear cuenta</h2>
+          <p className="subtitulo">Registrate para comenzar a usar la app</p>
+        </div>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="nombre">Nombre</label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
+            required
+          />
+
+          <label htmlFor="email">Correo electrónico</label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+
+          <label htmlFor="password">Contraseña</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button type="submit">Crear cuenta</button>
+        </form>
+      </div>
+    </>
   );
 };
 

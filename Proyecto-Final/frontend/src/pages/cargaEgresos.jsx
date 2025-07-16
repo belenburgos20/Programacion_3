@@ -17,9 +17,7 @@ const CargaEgreso = () => {
       console.error("Error completo:", error);
       if (error.response) {
         alert(
-          `Error: ${
-            error.response.data.error || "Error al guardar el egreso"
-          }`
+          `Error: ${error.response.data.error || "Error al guardar el egreso"}`
         );
       } else {
         alert("Error de conexión al guardar el egreso");
@@ -30,7 +28,7 @@ const CargaEgreso = () => {
   return (
     <div className="pagina-egreso">
       <div className="header-egreso">
-        <h1 className="titulo-egreso">💸 Nuevo Egreso</h1>
+        <h1 className="titulo-egreso"> Nuevo Egreso</h1>
         <p className="subtitulo">
           Registra tus gastos para mantener el control
         </p>
