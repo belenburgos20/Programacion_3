@@ -1,0 +1,65 @@
+.pagina-ingreso {
+  max-width: 600px;
+  margin: 40px auto;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  font-family: "Segoe UI", sans-serif;
+  color: #333;
+}
+
+.header-ingreso {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #4caf50;
+}
+
+.titulo-ingreso {
+  color: #4caf50;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+}
+
+.subtitulo {
+  color: #666;
+  margin: 0;
+  font-size: 1rem;
+}
+.contenido-ingreso form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.contenido-ingreso input,
+.contenido-ingreso select {
+  padding: 0.7rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #dddddd;
+  background-color: #fff;
+}
+.acciones-ingreso {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.btn-volver {
+  background-color: #4caf50;
+  border: 1px solid #cccccc;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.btn-volver:hover {
+  background-color: rgb(5, 101, 3);
+  transform: translateY(-1px);
+}
