@@ -89,15 +89,15 @@ input {
 
 input:focus {
   outline: none;
-  border-color: #bf5f82;
-  box-shadow: 0 0 4px rgba(191, 95, 130, 0.4);
+  border-color: #4caf50;
+  box-shadow: 0 0 4px #4caf50;
 }
 
 button {
   padding: 12px;
   border: none;
   border-radius: 6px;
-  background-color: #bf5f82;
+  background-color: #4caf50;
   color: white;
   font-size: 1rem;
   font-weight: 600;
@@ -106,7 +106,7 @@ button {
 }
 
 button:hover {
-  background-color: #a94c70;
+  background-color: #4ca14f;
 }
 
 .mensaje-error {

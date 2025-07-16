@@ -50,7 +50,7 @@
 }
 
 .btn-volver {
-  background-color: #5b7cfa;
+  background-color: #4caf50;
   border: 1px solid #cccccc;
   padding: 12px 24px;
   border-radius: 6px;
@@ -60,6 +60,6 @@
 }
 
 .btn-volver:hover {
-  background-color: #5b7cfa;
+  background-color: rgb(5, 101, 3);
   transform: translateY(-1px);
 }
