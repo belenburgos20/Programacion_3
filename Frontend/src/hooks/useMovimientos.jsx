@@ -1,1 +1,0 @@
-//Carga y filtrado de ingresos y egresos. Para manejar la lógica de los movimientos
